@@ -8,7 +8,7 @@
         "source": "/api/**",
         "run": {
           "serviceId": "omni-biosystems-api",
-          "region": "us-central1"
+          "region": "asia-southeast1"
         }
       },
       {
