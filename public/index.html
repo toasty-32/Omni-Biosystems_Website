@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omni Biosystems — OncoMiMIC | AI-powered, chip-based drug discovery</title>
+<meta name="description" content="OncoMiMIC by Omni Biosystems is an automated, AI-powered, chip-based microphysiological platform — bridging AI-driven target discovery and clinical validation for a world beyond animal testing.">
+<meta property="og:title" content="Omni Biosystems — OncoMiMIC">
+<meta property="og:description" content="Automated, AI-powered, chip-based drug discovery. Re-creating the tumor microenvironment for ex-vivo immuno-oncology.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#0B1B3A;
+  --navy-900:#06112A;
+  --navy-800:#0E2148;
+  --navy-700:#15315F;
+  --line:#1E3A66;
+  --teal:#1BB3C4;
+  --cyan:#37D6E6;
+  --cyan-soft:#9DE9F1;
+  --ice:#AFC6E0;
+  --ice-dim:#7E97B8;
+  --amber:#EB7B2E;
+  --paper:#F4F8FC;
+  --paper-2:#E7EFF8;
+  --ink:#0B1B3A;
+  --ink-soft:#41598A;
+  --white:#FFFFFF;
+
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono','SF Mono',ui-monospace,monospace;
+
+  --maxw:1180px;
+  --r:14px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy);
+  color:var(--ice);
+  font-family:var(--body);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+
+/* ── utility / shared ─────────────────────────────────────── */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--teal);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:"";width:26px;height:1px;background:var(--teal);opacity:.7;
+}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--white);line-height:1.08;letter-spacing:-.01em;}
+.section-h{font-size:clamp(30px,4.4vw,52px);margin:18px 0 0;}
+.lead{font-size:clamp(16px,1.5vw,19px);color:var(--ice);max-width:62ch;}
+.muted{color:var(--ice-dim);}
+
+.btn{
+  font-family:var(--display);font-weight:600;font-size:15px;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 26px;border-radius:999px;cursor:pointer;border:1px solid transparent;
+  transition:transform .25s ease,background .25s ease,box-shadow .25s ease,color .25s ease,border-color .25s ease;
+}
+.btn-primary{background:var(--cyan);color:var(--navy-900);box-shadow:0 10px 30px -10px rgba(55,214,230,.6);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(55,214,230,.75);}
+.btn-ghost{border-color:var(--line);color:var(--ice);background:rgba(255,255,255,.02);}
+.btn-ghost:hover{border-color:var(--teal);color:var(--white);transform:translateY(-2px);}
+.btn .arr{transition:transform .25s ease;}
+.btn:hover .arr{transform:translateX(4px);}
+
+/* ── reveal animation ─────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ════════════════ NAV ════════════════ */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s ease,backdrop-filter .4s ease,border-color .4s ease,padding .4s ease;
+  border-bottom:1px solid transparent;padding:18px 0;
+}
+header.nav.scrolled{
+  background:rgba(8,18,40,.82);backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);padding:12px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:14px;}
+.mark{width:34px;height:34px;flex:none;}
+.brand-name{font-family:var(--display);font-weight:700;font-size:19px;color:var(--white);letter-spacing:.02em;line-height:1;}
+.brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);display:block;margin-top:3px;}
+.nav-links{display:flex;align-items:center;gap:34px;}
+.nav-links a{font-size:14.5px;color:var(--ice);transition:color .2s ease;position:relative;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--teal);transition:width .25s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{padding:10px 20px;font-size:14px;}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:42px;height:42px;cursor:pointer;color:var(--ice);}
+
+/* ════════════════ HERO ════════════════ */
+.hero{position:relative;padding:170px 0 90px;overflow:hidden;}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(900px 500px at 78% 18%,rgba(27,179,196,.16),transparent 60%),
+    radial-gradient(700px 500px at 12% 90%,rgba(21,49,95,.6),transparent 60%),
+    linear-gradient(180deg,var(--navy-900),var(--navy));
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(circle at 70% 35%,#000 0%,transparent 72%);
+          mask-image:radial-gradient(circle at 70% 35%,#000 0%,transparent 72%);
+  opacity:.18;
+}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;}
+.hero h1{font-size:clamp(38px,5.6vw,68px);font-weight:700;margin:22px 0 0;}
+.hero h1 .accent{color:var(--cyan);}
+.hero .tagline{margin-top:24px;font-size:clamp(16px,1.6vw,20px);color:var(--ice);max-width:50ch;}
+.hero-actions{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;}
+.hero-meta{margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ice-dim);}
+.hero-meta b{color:var(--cyan-soft);font-weight:700;}
+
+/* ── the living chip (signature) ── */
+.chip-stage{position:relative;aspect-ratio:1/1;width:100%;max-width:460px;margin-left:auto;}
+.chip-glow{position:absolute;inset:-12%;background:radial-gradient(circle,rgba(55,214,230,.22),transparent 65%);filter:blur(8px);z-index:0;}
+.chip{
+  position:absolute;inset:0;z-index:1;border-radius:22px;
+  background:linear-gradient(145deg,rgba(14,33,72,.9),rgba(6,17,42,.92));
+  border:1px solid var(--line);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.04);
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+  overflow:hidden;
+}
+.zone{position:relative;border:1px solid rgba(30,58,102,.6);}
+.zone-tag{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ice-dim);top:10px;left:12px;text-transform:uppercase;}
+.zone-letter{position:absolute;font-family:var(--display);font-weight:700;font-size:clamp(40px,9vw,72px);color:rgba(175,198,224,.07);right:14px;bottom:4px;line-height:1;}
+.chip canvas{position:absolute;inset:0;z-index:3;width:100%;height:100%;}
+.chip-legend{position:absolute;z-index:4;bottom:14px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--ice-dim);text-transform:uppercase;pointer-events:none;}
+.chip-legend span{display:inline-flex;align-items:center;gap:6px;}
+.dot{width:7px;height:7px;border-radius:50%;}
+.dot.tumor{background:var(--amber);}
+.dot.immune{background:var(--cyan);}
+.chip-caption{margin-top:18px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ice-dim);}
+
+/* ════════════════ MARQUEE / proof strip ════════════════ */
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--navy-900);}
+.proof .wrap{display:flex;flex-wrap:wrap;gap:36px 56px;align-items:center;justify-content:center;padding:26px 28px;}
+.proof span{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--ice-dim);}
+.proof b{color:var(--cyan-soft);}
+
+/* ════════════════ generic section ════════════════ */
+section.block{padding:104px 0;position:relative;}
+.sec-head{max-width:760px;margin-bottom:54px;}
+
+/* ════════════════ PROBLEM ════════════════ */
+.problem{background:linear-gradient(180deg,var(--navy),var(--navy-800));}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:46px;}
+.stat{
+  background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--r);
+  padding:30px 26px;
+}
+.stat .num{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.4vw,60px);color:var(--white);line-height:1;}
+.stat .num .u{color:var(--cyan);}
+.stat .lbl{margin-top:14px;font-size:14.5px;color:var(--ice-dim);}
+.problem-note{max-width:74ch;font-size:16px;color:var(--ice);}
+
+/* ════════════════ PLATFORM (light) ════════════════ */
+.platform{background:var(--paper);color:var(--ink);}
+.platform .eyebrow{color:var(--teal);}
+.platform h2{color:var(--ink);}
+.platform .lead{color:var(--ink-soft);}
+.subsys{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:8px;}
+.sub{
+  background:var(--white);border:1px solid var(--paper-2);border-radius:var(--r);padding:26px 22px;
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+  display:flex;flex-direction:column;
+}
+.sub:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(11,27,58,.35);border-color:#CFE0F0;}
+.sub .ico{width:46px;height:46px;border-radius:11px;background:var(--navy);display:grid;place-items:center;margin-bottom:18px;}
+.sub .ico svg{width:24px;height:24px;}
+.sub h3{font-size:17px;color:var(--ink);margin-bottom:8px;line-height:1.25;}
+.sub p{font-size:14px;color:var(--ink-soft);}
+.trl{display:inline-block;align-self:flex-start;margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--teal);background:rgba(27,179,196,.1);padding:5px 10px;border-radius:7px;}
+.sub p{margin-bottom:18px;}
+
+/* ════════════════ SCIENCE / 3D ════════════════ */
+.science{background:var(--navy-800);}
+.science-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.cmp{width:100%;border-collapse:collapse;font-size:14.5px;}
+.cmp th,.cmp td{text-align:left;padding:15px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+.cmp thead th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ice-dim);font-weight:400;}
+.cmp thead th.good{color:var(--cyan);}
+.cmp td.metric{color:var(--white);font-weight:500;font-family:var(--display);}
+.cmp td.bad{color:var(--ice-dim);}
+.cmp td.good{color:var(--cyan-soft);}
+.science-call{margin-top:26px;padding:22px 24px;border-left:2px solid var(--amber);background:rgba(235,123,46,.06);border-radius:0 var(--r) var(--r) 0;font-size:15px;color:var(--ice);}
+.science-call b{color:var(--white);}
+
+/* outputs list */
+.outputs{display:flex;flex-direction:column;gap:14px;}
+.out{display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);transition:border-color .3s ease,transform .3s ease;}
+.out:hover{border-color:var(--teal);transform:translateX(4px);}
+.out .n{font-family:var(--mono);font-size:12px;color:var(--teal);flex:none;width:34px;}
+.out .t{font-size:15px;color:var(--white);font-weight:500;}
+.out .d{font-size:13px;color:var(--ice-dim);}
+.outputs-cap{margin-top:24px;font-size:15px;color:var(--ice);}
+.outputs-cap b{color:var(--cyan-soft);}
+
+/* ════════════════ WHY NOW ════════════════ */
+.why{background:linear-gradient(180deg,var(--navy-800),var(--navy));}
+.why-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:64px;}
+.why-card{padding:30px 26px;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.02);}
+.why-card .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);}
+.why-card h3{font-size:19px;margin:14px 0 10px;}
+.why-card p{font-size:14.5px;color:var(--ice-dim);}
+.market{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;}
+.market div{padding:30px 28px;border-right:1px solid var(--line);}
+.market div:last-child{border-right:none;}
+.market .tier{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;}
+.market .val{font-family:var(--display);font-weight:700;font-size:clamp(30px,4vw,42px);color:var(--white);margin:10px 0 6px;}
+.market .desc{font-size:13.5px;color:var(--ice-dim);}
+
+/* ════════════════ TEAM ════════════════ */
+.team{background:var(--paper);color:var(--ink);}
+.team .eyebrow{color:var(--teal);}
+.team h2{color:var(--ink);}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.member{background:var(--white);border:1px solid var(--paper-2);border-radius:var(--r);padding:30px 26px;}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--navy);color:var(--cyan);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:20px;letter-spacing:.03em;}
+.member h3{font-size:19px;color:var(--ink);}
+.member .role{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:6px 0 16px;}
+.member ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.member li{font-size:13.5px;color:var(--ink-soft);padding-left:18px;position:relative;}
+.member li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--teal);}
+
+/* ════════════════ TRACTION ════════════════ */
+.traction{background:var(--navy);}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:64px;position:relative;}
+.tl{position:relative;padding:0 12px;}
+.tl::before{content:"";position:absolute;top:7px;left:0;right:0;height:1px;background:var(--line);}
+.tl .node{position:relative;width:14px;height:14px;border-radius:50%;background:var(--navy);border:2px solid var(--teal);z-index:2;margin-bottom:18px;}
+.tl.done .node{background:var(--teal);box-shadow:0 0 0 5px rgba(27,179,196,.16);}
+.tl .q{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.06em;}
+.tl .ev{font-size:14px;color:var(--ice);margin-top:8px;}
+.grants{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.grant{padding:26px;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.02);}
+.grant .g-val{font-family:var(--display);font-weight:700;font-size:22px;color:var(--white);}
+.grant .g-t{font-size:13.5px;color:var(--ice-dim);margin-top:8px;}
+
+/* ════════════════ CONTACT ════════════════ */
+.contact{background:linear-gradient(180deg,var(--navy),var(--navy-900));}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.contact h2{font-size:clamp(30px,4.4vw,50px);}
+.contact-vision{font-size:clamp(18px,2vw,24px);font-family:var(--display);color:var(--white);line-height:1.4;max-width:20ch;margin-bottom:30px;}
+.contact-vision .accent{color:var(--cyan);}
+.contact-info{font-size:15px;color:var(--ice);}
+.contact-info a.mail{color:var(--cyan-soft);border-bottom:1px solid rgba(157,233,241,.3);transition:border-color .2s ease;}
+.contact-info a.mail:hover{border-color:var(--cyan-soft);}
+.contact-meta{margin-top:28px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ice-dim);line-height:2;}
+
+form.cf{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:18px;padding:32px;}
+.frow{margin-bottom:18px;}
+.frow.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ice-dim);margin-bottom:8px;}
+input,textarea,select{
+  width:100%;background:var(--navy-900);border:1px solid var(--line);border-radius:10px;
+  padding:13px 15px;color:var(--white);font-family:var(--body);font-size:15px;transition:border-color .2s ease,box-shadow .2s ease;
+}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(27,179,196,.15);}
+textarea{resize:vertical;min-height:120px;}
+.cf button{width:100%;justify-content:center;margin-top:6px;}
+.form-status{margin-top:16px;font-size:14px;min-height:20px;}
+.form-status.ok{color:var(--cyan-soft);}
+.form-status.err{color:var(--amber);}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 0 40px;}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.foot .brand-name{font-size:17px;}
+.foot-links{display:flex;gap:26px;font-size:13.5px;color:var(--ice-dim);}
+.foot-links a:hover{color:var(--white);}
+.copy{margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ice-dim);}
+
+/* ════════════════ RESPONSIVE ════════════════ */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;}
+  .chip-stage{margin:0 auto;}
+  .science-grid,.contact-grid{grid-template-columns:1fr;gap:42px;}
+  .subsys,.why-cards,.team-grid,.grants{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+  .menu-btn{display:grid;place-items:center;}
+  .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:18px;background:var(--navy-900);padding:24px 28px;border-bottom:1px solid var(--line);}
+  .nav-links.open .nav-cta{display:none;}
+}
+@media(max-width:680px){
+  .stat-row,.subsys,.why-cards,.team-grid,.grants,.market,.timeline{grid-template-columns:1fr;}
+  .market div{border-right:none;border-bottom:1px solid var(--line);}
+  .market div:last-child{border-bottom:none;}
+  .timeline{gap:24px;}
+  .tl::before{display:none;}
+  .frow.two{grid-template-columns:1fr;}
+  section.block{padding:74px 0;}
+  .foot{flex-direction:column;align-items:flex-start;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Omni Biosystems home">
+      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="3" y="3" width="94" height="94" rx="14" fill="none" stroke="#1BB3C4" stroke-width="4"/>
+        <line x1="50" y1="8" x2="50" y2="92" stroke="#1E3A66" stroke-width="3"/>
+        <line x1="8" y1="50" x2="92" y2="50" stroke="#1E3A66" stroke-width="3"/>
+        <text x="27" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">O</text>
+        <text x="73" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">N</text>
+        <text x="27" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+        <text x="73" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#37D6E6" text-anchor="middle">I</text>
+      </svg>
+      <span>
+        <span class="brand-name">Omni Biosystems</span>
+        <span class="brand-sub">OncoMiMIC&nbsp;Platform</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#platform">Platform</a>
+      <a href="#science">Science</a>
+      <a href="#why">Why now</a>
+      <a href="#team">Team</a>
+      <a href="#contact" class="btn btn-primary nav-cta">Get in touch</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-bg"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Automated · AI-powered · Chip-based</span>
+      <h1 class="reveal">Drug discovery,<br>re-created on a <span class="accent">chip.</span></h1>
+      <p class="tagline reveal">OncoMiMIC re-creates the tumor microenvironment on a microfluidic chip — running ex-vivo immuno-oncology experiments that bridge AI-driven target discovery and clinical validation.</p>
+      <div class="hero-actions reveal">
+        <a href="#platform" class="btn btn-primary">Explore the platform <span class="arr">→</span></a>
+        <a href="#contact" class="btn btn-ghost">Partner with us</a>
+      </div>
+      <div class="hero-meta reveal">
+        <span><b>5+</b> outputs / experiment</span>
+        <span><b>5–20×</b> faster analysis</span>
+        <span><b>30–144</b> data points / chip</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="chip-stage">
+        <div class="chip-glow"></div>
+        <div class="chip" id="chip">
+          <div class="zone"><span class="zone-tag">Zone 0 · Tumor</span><span class="zone-letter">O</span></div>
+          <div class="zone"><span class="zone-tag">Zone 1 · Interaction</span><span class="zone-letter">N</span></div>
+          <div class="zone"><span class="zone-tag">Zone 2 · Barrier</span><span class="zone-letter">M</span></div>
+          <div class="zone"><span class="zone-tag">Zone 3 · Immune</span><span class="zone-letter">I</span></div>
+          <canvas id="flow"></canvas>
+          <div class="chip-legend">
+            <span><i class="dot tumor"></i>Tumor spheroid</span>
+            <span><i class="dot immune"></i>Immune effector cells</span>
+          </div>
+        </div>
+      </div>
+      <p class="chip-caption">Live tumor–immune interaction · 4-zone microfluidic chip</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROOF STRIP ══════════ -->
+<div class="proof">
+  <div class="wrap">
+    <span>Licensed from <b>A*STAR</b>, Singapore</span>
+    <span>Global <b>CRO</b> validation partnership</span>
+    <span><b>&gt;$1M SGD</b> in research grants</span>
+    <span>Peer-reviewed in <b>Bioeng. Transl. Med.</b></span>
+    <span>US Patent <b>granted</b></span>
+  </div>
+</div>
+
+<!-- ══════════ PROBLEM ══════════ -->
+<section class="block problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The problem</span>
+      <h2 class="section-h">Preclinical drug discovery is slow, costly, and wrong too often.</h2>
+    </div>
+    <div class="stat-row">
+      <div class="stat reveal"><div class="num" data-count="90" data-suffix="%">~0<span class="u">%</span></div><div class="lbl">of drug candidates fail in clinical trials</div></div>
+      <div class="stat reveal"><div class="num" data-count="2" data-prefix="~$" data-suffix="B">~$0<span class="u">B</span></div><div class="lbl">average cost to bring one drug to market</div></div>
+      <div class="stat reveal"><div class="num">1&ndash;2</div><div class="lbl">endpoint metrics from standard 2D well-plate assays</div></div>
+    </div>
+    <p class="problem-note reveal">Today's preclinical standards — flat 2D assays and animal models — fail to recapitulate the 3D tumor microenvironment. Cells on plastic inflate efficacy estimates, and the misses surface late, after hundreds of millions have already been spent. The industry needs data that is more relevant, more automated, and arrives earlier.</p>
+  </div>
+</section>
+
+<!-- ══════════ PLATFORM ══════════ -->
+<section class="block platform" id="platform">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The platform</span>
+      <h2 class="section-h">One chip. Four integrated subsystems.</h2>
+      <p class="lead" style="margin-top:18px;">OncoMiMIC combines microfluidics, novel optics, robotic liquid handling, and AI-driven computer vision into a single automated system — delivering high-throughput, physiologically relevant drug screening.</p>
+    </div>
+    <div class="subsys">
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+        <h3>Injection-molded microfluidic chips</h3>
+        <p>Proprietary compartmentalized design, mass-produced with semiconductor fabrication techniques.</p>
+        <span class="trl">TRL 5</span>
+      </div>
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/></svg></div>
+        <h3>Novel optics subsystem</h3>
+        <p>Purpose-built imaging optics for live, longitudinal capture of cells inside the chip.</p>
+        <span class="trl">TRL 3</span>
+      </div>
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><rect x="4" y="3" width="16" height="6" rx="2"/><path d="M12 9v6"/><circle cx="12" cy="19" r="2.5"/><path d="M7 15h10"/></svg></div>
+        <h3>Robotic liquid handling</h3>
+        <p>Automated dosing and cell loading for reproducible, hands-off experiment runs.</p>
+        <span class="trl">TRL 4</span>
+      </div>
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <h3>AI computer vision</h3>
+        <p>Semantic segmentation, cell tracking, and analysis that cuts read-out time by 5–20×.</p>
+        <span class="trl">TRL 4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SCIENCE ══════════ -->
+<section class="block science" id="science">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Scientific foundation</span>
+      <h2 class="section-h">Why 3D changes the answer.</h2>
+    </div>
+    <div class="science-grid">
+      <div class="reveal">
+        <table class="cmp">
+          <thead><tr><th></th><th>2D well plate</th><th class="good">OncoMiMIC 3D chip</th></tr></thead>
+          <tbody>
+            <tr><td class="metric">Morphology</td><td class="bad">Flat, elongated</td><td class="good">Native 3D shape</td></tr>
+            <tr><td class="metric">Gene expression</td><td class="bad">Far from patient tissue</td><td class="good">Matches in-vivo signatures</td></tr>
+            <tr><td class="metric">Drug sensitivity</td><td class="bad">Underestimates dose</td><td class="good">Accurate resistance modeling</td></tr>
+            <tr><td class="metric">Cell communication</td><td class="bad">Poor junctions</td><td class="good">Functional, quantifiable contact</td></tr>
+            <tr><td class="metric">Throughput</td><td class="bad">1 well = 1 data point</td><td class="good">1 chip &gt; 30–144 points</td></tr>
+          </tbody>
+        </table>
+        <div class="science-call">3D cultures yield <b>2–6× higher IC50 values</b> than 2D — meaning standard assays systematically underestimate the dose needed for real clinical effect.</div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Data advantage</span>
+        <h3 style="font-size:26px;margin:16px 0 24px;">5+ rich outputs from a single experiment.</h3>
+        <div class="outputs">
+          <div class="out"><span class="n">01</span><span><span class="t">Immune cell recruitment</span></span></div>
+          <div class="out"><span class="n">02</span><span><span class="t">Immune cell infiltration</span></span></div>
+          <div class="out"><span class="n">03</span><span><span class="t">Immune-mediated cytotoxicity</span></span></div>
+          <div class="out"><span class="n">04</span><span><span class="t">Spatial dynamics</span> <span class="d">— AI-tracked, longitudinal</span></span></div>
+          <div class="out"><span class="n">05</span><span><span class="t">Gene expression</span> <span class="d">— recovered cells, same run</span></span></div>
+        </div>
+        <p class="outputs-cap">Each run links phenotype to genotype — enabling earlier <b>“kill early, kill cheap”</b> decisions at the stages where they save the most.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY NOW ══════════ -->
+<section class="block why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Market timing</span>
+      <h2 class="section-h">Why now.</h2>
+    </div>
+    <div class="why-cards">
+      <div class="why-card reveal"><span class="k">Regulatory</span><h3>Beyond animal testing</h3><p>The FDA is phasing out animal-testing requirements for monoclonal antibodies, pushing the industry toward microphysiological systems.</p></div>
+      <div class="why-card reveal"><span class="k">AI bottleneck</span><h3>Targets outpace validation</h3><p>In-silico discovery has exploded the number of candidate targets — but experimental validation hasn't kept pace, creating a massive bottleneck.</p></div>
+      <div class="why-card reveal"><span class="k">APAC</span><h3>Automation boom</h3><p>China and APAC are outpacing the world in lab automation and robotics to meet surging biotech demand.</p></div>
+    </div>
+    <div class="market reveal">
+      <div><div class="tier">TAM</div><div class="val">$96.4B</div><div class="desc">Global oncology market</div></div>
+      <div><div class="tier">SAM</div><div class="val">$10B+</div><div class="desc">Immuno-oncology by 2029</div></div>
+      <div><div class="tier">SOM</div><div class="val">$5.85M</div><div class="desc">Beachhead revenue target, 2029</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TEAM ══════════ -->
+<section class="block team" id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The founding team</span>
+      <h2 class="section-h">Operators and inventors who have done it before.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="member reveal">
+        <div class="avatar">NO</div>
+        <h3>Nicholas Oh</h3>
+        <div class="role">Chief Executive Officer</div>
+        <ul>
+          <li>Founder &amp; CEO, Enlitho Pte Ltd (est. 2017)</li>
+          <li>Raised &gt;USD 2.5M in grants + private investment</li>
+          <li>5× YoY revenue growth; ISO 9001 facility</li>
+          <li>Scaled ops to 1,000 wafers/month</li>
+          <li>BEng, SUTD (Magna Cum Laude)</li>
+        </ul>
+      </div>
+      <div class="member reveal">
+        <div class="avatar">CT</div>
+        <h3>Dr. Christopher Tostado</h3>
+        <div class="role">Chief Scientific Officer</div>
+        <ul>
+          <li>Inventor on the core US microfluidics patent</li>
+          <li>Sr. Research Scientist / PI, Genome Institute of Singapore</li>
+          <li>&gt;$1M SGD in grant funding awarded</li>
+          <li>15+ years microfluidics R&amp;D</li>
+          <li>PhD Tsinghua · Dual BS, MIT</li>
+        </ul>
+      </div>
+      <div class="member reveal">
+        <div class="avatar">HT</div>
+        <h3>Hui Tang</h3>
+        <div class="role">CFO / Business Development</div>
+        <ul>
+          <li>Closed a USD 2M fundraise (2024)</li>
+          <li>Former CEO, Nufront (RMB 150M raise)</li>
+          <li>27 patents in imaging &amp; mobile tech</li>
+          <li>Cross-border BD: China, EU, US</li>
+          <li>Executive MBA, Erasmus / RSM</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRACTION ══════════ -->
+<section class="block traction">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Traction &amp; roadmap</span>
+      <h2 class="section-h">From MVP chip to revenue.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl done reveal"><div class="node"></div><div class="q">Q1 2026</div><div class="ev">MVP chip · SG Biodesign grant</div></div>
+      <div class="tl reveal"><div class="node"></div><div class="q">Q2 2026</div><div class="ev">CRO partnership kickoff</div></div>
+      <div class="tl reveal"><div class="node"></div><div class="q">Q4 2026</div><div class="ev">Alpha integrated system</div></div>
+      <div class="tl reveal"><div class="node"></div><div class="q">Q2 2027</div><div class="ev">Pilot validation complete</div></div>
+      <div class="tl reveal"><div class="node"></div><div class="q">Q3 2027</div><div class="ev">First revenue: chips + installs</div></div>
+    </div>
+    <div class="grants">
+      <div class="grant reveal"><div class="g-val">Global CRO partnership</div><div class="g-t">~$50K SGD in-kind services for the proof-of-concept project. All IP developed belongs to the company.</div></div>
+      <div class="grant reveal"><div class="g-val">SG Biodesign grant</div><div class="g-t">~6 months funding for microfluidic scale-up and MVP low-plex chip development.</div></div>
+      <div class="grant reveal"><div class="g-val">&gt;$1M SGD in grants</div><div class="g-t">A*STAR GAP Fund, AME YIRG and other schemes — 5+ years of core platform development.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <p class="contact-vision" style="margin-top:18px;">Bridging AI-driven discovery and clinical validation — for a world <span class="accent">beyond animal testing.</span></p>
+        <p class="contact-info">Investors, pharma and CRO partners, and researchers — we'd love to hear from you. Reach us directly at <a class="mail" href="mailto:contact@omni-biosystems.com">contact@omni-biosystems.com</a>.</p>
+        <div class="contact-meta">
+          Omni Biosystems Pte Ltd<br>
+          Singapore<br>
+          contact@omni-biosystems.com
+        </div>
+      </div>
+
+      <form class="cf" id="contactForm" novalidate>
+        <div class="frow two">
+          <div><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div><label for="org">Organization</label><input id="org" name="org" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="frow">
+          <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="frow">
+          <label for="topic">I'm reaching out as</label>
+          <select id="topic" name="topic">
+            <option>Investor</option>
+            <option>Pharma / CRO partner</option>
+            <option>Researcher / KOL</option>
+            <option>Press</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="frow">
+          <label for="message">Message</label><textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Send message <span class="arr">→</span></button>
+        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="#top">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="3" y="3" width="94" height="94" rx="14" fill="none" stroke="#1BB3C4" stroke-width="4"/>
+          <line x1="50" y1="8" x2="50" y2="92" stroke="#1E3A66" stroke-width="3"/>
+          <line x1="8" y1="50" x2="92" y2="50" stroke="#1E3A66" stroke-width="3"/>
+          <text x="27" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">O</text>
+          <text x="73" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">N</text>
+          <text x="27" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+          <text x="73" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#37D6E6" text-anchor="middle">I</text>
+        </svg>
+        <span class="brand-name">Omni Biosystems</span>
+      </a>
+      <div class="foot-links">
+        <a href="#platform">Platform</a>
+        <a href="#science">Science</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="copy">© <span id="yr"></span> Omni Biosystems Pte Ltd · Singapore · OncoMiMIC™ is a platform of Omni Biosystems.</div>
+  </div>
+</footer>
+
+<script>
+/* ════════ CONFIG ════════
+   Point this at your Cloud Run email API (same setup as Casa Ligure).
+   Leave as "" to fall back to a mailto: compose link instead. */
+var API_ENDPOINT = ""; // e.g. "https://omni-biosystems-api-xxxxx.a.run.app/contact"
+var CONTACT_EMAIL = "contact@omni-biosystems.com";
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── nav scroll state ── */
+var nav = document.getElementById('nav');
+function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 24); }
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ── mobile menu ── */
+var menuBtn = document.getElementById('menuBtn'), navlinks = document.getElementById('navlinks');
+menuBtn.addEventListener('click', function(){ navlinks.classList.toggle('open'); });
+navlinks.addEventListener('click', function(e){ if(e.target.tagName==='A') navlinks.classList.remove('open'); });
+
+/* ── reveal on scroll ── */
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window && !reduceMotion){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+} else {
+  revealEls.forEach(function(el){ el.classList.add('in'); });
+}
+
+/* ── animated counters ── */
+function animateCount(el){
+  var target = parseFloat(el.getAttribute('data-count'));
+  var prefix = el.getAttribute('data-prefix') || '';
+  var suffix = el.getAttribute('data-suffix') || '';
+  var dur = 1400, start = null;
+  function step(ts){
+    if(!start) start = ts;
+    var p = Math.min((ts - start)/dur, 1);
+    var eased = 1 - Math.pow(1-p, 3);
+    var val = target * eased;
+    var shown = target % 1 === 0 ? Math.round(val) : val.toFixed(1);
+    el.innerHTML = prefix + shown + '<span class="u">' + suffix + '</span>';
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var counters = document.querySelectorAll('.num[data-count]');
+if('IntersectionObserver' in window && !reduceMotion){
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ animateCount(en.target); cio.unobserve(en.target); } });
+  }, {threshold:.6});
+  counters.forEach(function(el){ cio.observe(el); });
+} else {
+  counters.forEach(function(el){
+    var prefix = el.getAttribute('data-prefix')||'', suffix = el.getAttribute('data-suffix')||'';
+    el.innerHTML = prefix + el.getAttribute('data-count') + '<span class="u">'+suffix+'</span>';
+  });
+}
+
+/* ════════ LIVING CHIP — microfluidic cell flow ════════ */
+(function(){
+  if(reduceMotion) return;
+  var canvas = document.getElementById('flow');
+  var chip = document.getElementById('chip');
+  if(!canvas || !chip) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, dpr, cells = [], spheroid;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    var r = chip.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    spheroid = {x: W*0.27, y: H*0.27, r: Math.min(W,H)*0.11};
+  }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  function spawn(){
+    // immune cells originate in the bottom-right reservoir (Zone 3 / "I")
+    return {
+      x: W*(0.55 + Math.random()*0.42),
+      y: H*(0.55 + Math.random()*0.42),
+      vx:0, vy:0, r: 1.6 + Math.random()*1.8,
+      seed: Math.random()*Math.PI*2,
+      life: 0, alive:true
+    };
+  }
+  for(var i=0;i<46;i++){ var c = spawn(); c.life = Math.random()*400; cells.push(c); }
+
+  var t = 0;
+  function frame(){
+    t += 0.016;
+    ctx.clearRect(0,0,W,H);
+
+    // tumor spheroid (Zone 0 / "O")
+    var pulse = 1 + Math.sin(t*1.6)*0.05;
+    var g = ctx.createRadialGradient(spheroid.x, spheroid.y, 1, spheroid.x, spheroid.y, spheroid.r*1.7*pulse);
+    g.addColorStop(0,'rgba(235,123,46,0.55)');
+    g.addColorStop(0.55,'rgba(235,123,46,0.16)');
+    g.addColorStop(1,'rgba(235,123,46,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(spheroid.x, spheroid.y, spheroid.r*1.7*pulse, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(235,140,70,0.9)';
+    ctx.beginPath(); ctx.arc(spheroid.x, spheroid.y, spheroid.r*pulse, 0, Math.PI*2); ctx.fill();
+
+    // immune cells migrate toward the tumor, with drift + slight jitter
+    cells.forEach(function(c){
+      var dx = spheroid.x - c.x, dy = spheroid.y - c.y;
+      var dist = Math.hypot(dx,dy) || 1;
+      var pull = 0.018;
+      c.vx += (dx/dist)*pull + Math.cos(c.seed + t*0.7)*0.02;
+      c.vy += (dy/dist)*pull + Math.sin(c.seed + t*0.7)*0.02;
+      c.vx *= 0.94; c.vy *= 0.94;
+      c.x += c.vx; c.y += c.vy;
+      c.life++;
+
+      // trail
+      ctx.strokeStyle = 'rgba(55,214,230,0.18)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(c.x - c.vx*5, c.y - c.vy*5); ctx.stroke();
+
+      // cell body
+      var near = dist < spheroid.r*1.5;
+      ctx.fillStyle = near ? 'rgba(157,233,241,0.95)' : 'rgba(55,214,230,0.85)';
+      ctx.beginPath(); ctx.arc(c.x, c.y, c.r, 0, Math.PI*2); ctx.fill();
+
+      // recycle cells that reach the tumor (cytolytic "kill" -> respawn at reservoir)
+      if(dist < spheroid.r*pulse + 2 || c.life > 900){
+        Object.assign(c, spawn());
+      }
+    });
+
+    requestAnimationFrame(frame);
+  }
+  // start only when hero is visible
+  if('IntersectionObserver' in window){
+    var vio = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ requestAnimationFrame(frame); vio.disconnect(); } });
+    });
+    vio.observe(chip);
+  } else { requestAnimationFrame(frame); }
+})();
+
+/* ════════ CONTACT FORM ════════ */
+var form = document.getElementById('contactForm');
+var statusEl = document.getElementById('formStatus');
+var submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  statusEl.className = 'form-status'; statusEl.textContent = '';
+
+  var data = {
+    name: form.name.value.trim(),
+    org: form.org.value.trim(),
+    email: form.email.value.trim(),
+    topic: form.topic.value,
+    message: form.message.value.trim()
+  };
+
+  if(!data.name || !data.email || !data.message){
+    statusEl.className = 'form-status err';
+    statusEl.textContent = 'Please add your name, email, and a message.';
+    return;
+  }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)){
+    statusEl.className = 'form-status err';
+    statusEl.textContent = 'That email address doesn’t look right.';
+    return;
+  }
+
+  // No API configured yet → open the visitor's mail client (clean mailto, like Casa Ligure)
+  if(!API_ENDPOINT){
+    var subject = 'Omni Biosystems enquiry — ' + data.topic + ' (' + data.name + ')';
+    var body = 'Name: ' + data.name + '\n'
+             + 'Organization: ' + (data.org || '—') + '\n'
+             + 'Email: ' + data.email + '\n'
+             + 'Type: ' + data.topic + '\n\n'
+             + data.message;
+    window.location.href = 'mailto:' + CONTACT_EMAIL
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+    statusEl.className = 'form-status ok';
+    statusEl.textContent = 'Opening your email app…';
+    return;
+  }
+
+  // API configured → POST to Cloud Run, same structure as Casa Ligure
+  submitBtn.disabled = true;
+  var original = submitBtn.innerHTML;
+  submitBtn.innerHTML = 'Sending…';
+
+  fetch(API_ENDPOINT, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(function(res){ if(!res.ok) throw new Error('bad status'); return res.json().catch(function(){return {};}); })
+  .then(function(){
+    form.reset();
+    statusEl.className = 'form-status ok';
+    statusEl.textContent = 'Thanks — your message is on its way. We’ll be in touch shortly.';
+  })
+  .catch(function(){
+    statusEl.className = 'form-status err';
+    statusEl.innerHTML = 'Something went wrong sending that. Email us directly at <a class="mail" href="mailto:'+CONTACT_EMAIL+'">'+CONTACT_EMAIL+'</a>.';
+  })
+  .finally(function(){
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = original;
+  });
+});
+</script>
+</body>
+</html>
