@@ -41,8 +41,17 @@ jobs:
     name: Deploy Frontend to Firebase Hosting
     runs-on: ubuntu-latest
     needs: deploy-backend
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - uses: actions/setup-node@v4
         with:
@@ -63,4 +72,4 @@ jobs:
           # VITE_API_BASE_URL intentionally omitted — Firebase Hosting rewrites /api/** to Cloud Run
 
       - name: Deploy to Firebase Hosting
-        run: npx firebase-tools deploy --only hosting --project omni-biosystems32 
+        run: npx firebase-tools deploy --only hosting --project omni-biosystems32
