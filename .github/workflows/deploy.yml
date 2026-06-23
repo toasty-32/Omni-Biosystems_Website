@@ -36,7 +36,7 @@ jobs:
             --allow-unauthenticated \
             --set-env-vars "ENVIRONMENT=production" \
             --set-env-vars "FIREBASE_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" \
-            --set-env-vars "ALLOWED_ORIGINS=https://omni-biosystems.com,https://www.omni-biosystems.com"
+            --set-env-vars "ALLOWED_ORIGINS=https://omni-biosystems.com\,https://www.omni-biosystems.com"
 
   deploy-frontend:
     name: Deploy Frontend to Firebase Hosting
