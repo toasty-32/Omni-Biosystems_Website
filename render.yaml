@@ -1,0 +1,45 @@
+services:
+  # FastAPI backend
+  - type: web
+    name: omni-biosystems-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: ENVIRONMENT
+        value: production
+      - key: ALLOWED_ORIGINS
+        value: https://omni-biosystems.com,https://www.omni-biosystems.com
+    domains:
+      - api.omni-biosystems.com
+
+  # React frontend (static site)
+  - type: web
+    name: omni-biosystems-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    plan: free
+    envVars:
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+      - key: VITE_API_BASE_URL
+        value: https://api.omni-biosystems.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    domains:
+      - omni-biosystems.com
+      - www.omni-biosystems.com

@@ -190,3 +190,72 @@ docker-compose up --build
 3. The frontend attaches the token as `Authorization: Bearer <token>` on every API request via the Axios interceptor in `frontend/src/lib/api.ts`.
 4. FastAPI's `get_current_user` dependency (`backend/app/core/security.py`) verifies the JWT using the Supabase JWT secret and extracts `sub` (the user UUID) from the payload.
 5. All database queries are scoped to that `sub`, enforced by both application logic and Supabase Row-Level Security policies.
+
+---
+
+## Production Deployment (Render + omni-biosystems.com)
+
+### Architecture
+
+```
+omni-biosystems.com        → Render Static Site  (React build)
+www.omni-biosystems.com    → Render Static Site  (redirect)
+api.omni-biosystems.com    → Render Web Service  (FastAPI)
+```
+
+### 1. Connect repo to Render
+
+1. Go to [render.com](https://render.com) → **New** → **Blueprint**
+2. Connect your GitHub repo (`toasty-32/Omni-Biosystems_Website`)
+3. Render reads `render.yaml` and creates both services automatically
+
+### 2. Set secret environment variables in Render dashboard
+
+For the **API service** (`omni-biosystems-api`):
+
+| Key | Value |
+|-----|-------|
+| `SUPABASE_URL` | Your Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | From Supabase → Settings → API |
+| `SUPABASE_JWT_SECRET` | From Supabase → Settings → API → JWT Secret |
+
+For the **frontend service** (`omni-biosystems-frontend`):
+
+| Key | Value |
+|-----|-------|
+| `VITE_SUPABASE_URL` | Your Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | From Supabase → Settings → API |
+
+### 3. Add custom domains in Render
+
+1. Open each service → **Settings** → **Custom Domains**
+2. Add `omni-biosystems.com` and `www.omni-biosystems.com` to the frontend service
+3. Add `api.omni-biosystems.com` to the API service
+4. Render will show you the DNS values to add — typically a CNAME target
+
+### 4. Configure DNS at your registrar
+
+Add these records (replace `<render-target>` with the value Render gives you):
+
+```
+Type    Name    Value                          TTL
+─────────────────────────────────────────────────────
+A       @       216.24.57.1                    300   ← Render's apex IP
+CNAME   www     omni-biosystems.com            300
+CNAME   api     <api-service>.onrender.com     300
+```
+
+> **Apex domain note:** Render provides specific A record IPs for bare domains
+> (`@`). Use the exact IP shown in your Render custom domain settings.
+> For `www`, a CNAME pointing to the bare domain works on most registrars.
+
+### 5. TLS
+
+Render provisions and auto-renews Let's Encrypt certificates for all custom
+domains — no action needed.
+
+### Trigger deploys
+
+Every push to `main` automatically redeploys both services. The CI workflow
+runs first; Render only deploys on a green build if you enable **Auto-Deploy**
+with a branch filter in Render settings.
