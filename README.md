@@ -193,7 +193,97 @@ docker-compose up --build
 
 ---
 
-## Production Deployment (Render + omni-biosystems.com)
+## Production Deployment (Firebase + omni-biosystems.com)
+
+### Architecture
+
+```
+omni-biosystems.com        → Firebase Hosting  (React static build)
+www.omni-biosystems.com    → Firebase Hosting  (redirects to apex)
+omni-biosystems.com/api/** → Firebase rewrite → Cloud Run (FastAPI)
+```
+
+Firebase Hosting handles TLS, CDN, and routes `/api/**` transparently to Cloud Run — no separate API subdomain needed.
+
+---
+
+### One-time setup
+
+#### 1. Create a Firebase project
+
+1. Go to [console.firebase.google.com](https://console.firebase.google.com) → **Add project**
+2. Name it **omni-biosystems** (must match `.firebaserc`)
+3. Enable **Google Analytics** if desired
+
+#### 2. Enable Cloud Run in GCP
+
+1. In [console.cloud.google.com](https://console.cloud.google.com), select the same project
+2. Enable these APIs: **Cloud Run**, **Cloud Build**, **Artifact Registry**, **Secret Manager**
+3. Create an Artifact Registry repository:
+   ```
+   Region: us-central1  |  Format: Docker  |  Name: omni-biosystems
+   ```
+
+#### 3. Store secrets in GCP Secret Manager
+
+```bash
+# Run once with your real values
+gcloud secrets create SUPABASE_URL          --data-file=- <<< "https://your-project.supabase.co"
+gcloud secrets create SUPABASE_SERVICE_ROLE_KEY --data-file=- <<< "your-service-role-key"
+gcloud secrets create SUPABASE_JWT_SECRET   --data-file=- <<< "your-jwt-secret"
+```
+
+#### 4. Add GitHub Actions secrets
+
+In GitHub → repo → **Settings → Secrets and variables → Actions**, add:
+
+| Secret | Value |
+|--------|-------|
+| `GCP_PROJECT_ID` | Your GCP project ID |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | Workload Identity Federation provider URI |
+| `GCP_SERVICE_ACCOUNT` | Service account email for Cloud Build/Run |
+| `FIREBASE_SERVICE_ACCOUNT` | Firebase service account JSON (from Firebase → Project Settings → Service accounts) |
+| `VITE_SUPABASE_URL` | Your Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Your Supabase anon key |
+
+> **Workload Identity Federation** (keyless auth) is the recommended approach.
+> See [google-github-actions/auth](https://github.com/google-github-actions/auth#setting-up-workload-identity-federation) for the one-time setup (~5 min).
+
+#### 5. Connect custom domain in Firebase
+
+1. Firebase console → **Hosting** → **Add custom domain**
+2. Add `omni-biosystems.com` — Firebase shows you two A record values
+3. Add `www.omni-biosystems.com` — Firebase shows a CNAME value
+
+---
+
+### DNS configuration in Squarespace
+
+Go to **Squarespace Domains** → `omni-biosystems.com` → **DNS Settings** → **Custom Records**.
+
+Add these records (replace values with what Firebase shows you):
+
+```
+Type    Host    Value / Points To               TTL
+────────────────────────────────────────────────────────
+A       @       151.101.1.195                   Auto
+A       @       151.101.65.195                  Auto
+CNAME   www     omni-biosystems.com.            Auto
+```
+
+> Squarespace uses **@** for the bare/apex domain. Firebase gives you two A record
+> IPs — add both. The `www` CNAME should point to the bare domain (with trailing dot).
+> DNS propagation typically takes 5–30 minutes; TLS cert issues automatically after that.
+
+---
+
+### Deploys
+
+Every push to `main` triggers the `deploy.yml` workflow:
+1. Builds the Docker image → pushes to Artifact Registry → deploys to Cloud Run
+2. Builds the React app → deploys static files to Firebase Hosting
+
+The CI workflow (`ci.yml`) runs on all branches and PRs independently.
 
 ### Architecture
 
