@@ -18,10 +18,10 @@ export default function ProfilePage() {
         <h2 style={styles.heading}>Profile</h2>
         <div style={styles.card}>
           <Row label="Email" value={user?.email ?? '—'} />
-          <Row label="Full Name" value={profile?.full_name ?? '—'} />
+          <Row label="Display Name" value={profile?.displayName ?? '—'} />
           <Row label="Role" value={profile?.role ?? '—'} />
           <Row label="Organization" value={profile?.organization ?? '—'} />
-          <Row label="Member Since" value={profile ? new Date(profile.created_at).toLocaleDateString() : '—'} />
+          <Row label="Member Since" value={profile ? new Date(profile.createdAt).toLocaleDateString() : '—'} />
         </div>
       </main>
     </div>

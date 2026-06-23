@@ -14,9 +14,7 @@ jobs:
       run:
         working-directory: backend
     env:
-      SUPABASE_URL: https://placeholder.supabase.co
-      SUPABASE_SERVICE_ROLE_KEY: placeholder
-      SUPABASE_JWT_SECRET: placeholder-secret-at-least-32-chars-long
+      FIREBASE_PROJECT_ID: omni-biosystems-test
       ALLOWED_ORIGINS: http://localhost:3000
     steps:
       - uses: actions/checkout@v4

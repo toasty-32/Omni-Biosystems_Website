@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "samples",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "owner_id", "order": "ASCENDING" },
+        { "fieldPath": "collected_at", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "analysis_results",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "sample_id", "order": "ASCENDING" },
+        { "fieldPath": "flagged", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

@@ -13,30 +13,22 @@ import type { DashboardStats, Sample } from '../types'
 export default function DashboardPage() {
   const [showNewSample, setShowNewSample] = useState(false)
 
-  const {
-    data: stats,
-    isLoading: statsLoading,
-    isError: statsError,
-    refetch: refetchStats,
-  } = useQuery<DashboardStats>({
-    queryKey: ['dashboard-stats'],
-    queryFn: () => api.get('/dashboard/stats').then((r) => r.data),
-  })
+  const { data: stats, isLoading: statsLoading, isError: statsError, refetch: refetchStats } =
+    useQuery<DashboardStats>({
+      queryKey: ['dashboard-stats'],
+      queryFn: () => api.get('/dashboard/stats').then((r) => r.data),
+    })
 
-  const {
-    data: samples,
-    isLoading: samplesLoading,
-    isError: samplesError,
-    refetch: refetchSamples,
-  } = useQuery<Sample[]>({
-    queryKey: ['samples'],
-    queryFn: () => api.get('/samples').then((r) => r.data),
-  })
+  const { data: samples, isLoading: samplesLoading, isError: samplesError, refetch: refetchSamples } =
+    useQuery<Sample[]>({
+      queryKey: ['samples'],
+      queryFn: () => api.get('/samples').then((r) => r.data),
+    })
 
   const chartData = [
-    { name: 'Pending', count: stats?.pending_samples ?? 0 },
-    { name: 'Completed', count: stats?.completed_samples ?? 0 },
-    { name: 'Flagged', count: stats?.flagged_results ?? 0 },
+    { name: 'Pending', count: stats?.pendingSamples ?? 0 },
+    { name: 'Completed', count: stats?.completedSamples ?? 0 },
+    { name: 'Flagged', count: stats?.flaggedResults ?? 0 },
   ]
 
   return (
@@ -45,26 +37,17 @@ export default function DashboardPage() {
       <main style={styles.main}>
         <div style={styles.pageHeader}>
           <h2 style={styles.heading}>Dashboard</h2>
-          <button onClick={() => setShowNewSample(true)} style={styles.primaryBtn}>
-            + New Sample
-          </button>
+          <button onClick={() => setShowNewSample(true)} style={styles.primaryBtn}>+ New Sample</button>
         </div>
 
-        {statsError && (
-          <ErrorBanner
-            message="Failed to load stats."
-            onRetry={() => refetchStats()}
-          />
-        )}
+        {statsError && <ErrorBanner message="Failed to load stats." onRetry={() => refetchStats()} />}
 
-        {statsLoading ? (
-          <LoadingSpinner message="Loading stats…" />
-        ) : (
+        {statsLoading ? <LoadingSpinner message="Loading stats…" /> : (
           <div style={styles.statsGrid}>
-            <StatCard label="Total Samples" value={stats?.total_samples ?? 0} />
-            <StatCard label="Pending" value={stats?.pending_samples ?? 0} color="#f59e0b" />
-            <StatCard label="Completed" value={stats?.completed_samples ?? 0} color="var(--color-success)" />
-            <StatCard label="Flagged Results" value={stats?.flagged_results ?? 0} color="var(--color-error)" />
+            <StatCard label="Total Samples" value={stats?.totalSamples ?? 0} />
+            <StatCard label="Pending" value={stats?.pendingSamples ?? 0} color="#f59e0b" />
+            <StatCard label="Completed" value={stats?.completedSamples ?? 0} color="var(--color-success)" />
+            <StatCard label="Flagged Results" value={stats?.flaggedResults ?? 0} color="var(--color-error)" />
           </div>
         )}
 
@@ -83,21 +66,13 @@ export default function DashboardPage() {
 
         <div style={styles.section}>
           <h3 style={styles.sectionTitle}>Recent Samples</h3>
-          {samplesError && (
-            <ErrorBanner message="Failed to load samples." onRetry={() => refetchSamples()} />
-          )}
-          {samplesLoading ? (
-            <LoadingSpinner />
-          ) : !samples?.length ? (
+          {samplesError && <ErrorBanner message="Failed to load samples." onRetry={() => refetchSamples()} />}
+          {samplesLoading ? <LoadingSpinner /> : !samples?.length ? (
             <p style={styles.empty}>No samples yet. Create your first one above.</p>
           ) : (
             <table style={styles.table}>
               <thead>
-                <tr>
-                  {['Name', 'Type', 'Status', 'Collected'].map((h) => (
-                    <th key={h} style={styles.th}>{h}</th>
-                  ))}
-                </tr>
+                <tr>{['Name', 'Type', 'Status', 'Collected'].map((h) => <th key={h} style={styles.th}>{h}</th>)}</tr>
               </thead>
               <tbody>
                 {samples.slice(0, 10).map((s) => (
@@ -105,11 +80,9 @@ export default function DashboardPage() {
                     <td style={styles.td}>{s.name}</td>
                     <td style={styles.td}>{s.type}</td>
                     <td style={styles.td}>
-                      <span style={{ ...styles.badge, background: statusColor(s.status) }}>
-                        {s.status}
-                      </span>
+                      <span style={{ ...styles.badge, background: statusColor(s.status) }}>{s.status}</span>
                     </td>
-                    <td style={styles.td}>{new Date(s.collected_at).toLocaleDateString()}</td>
+                    <td style={styles.td}>{new Date(s.collectedAt).toLocaleDateString()}</td>
                   </tr>
                 ))}
               </tbody>
@@ -127,30 +100,15 @@ export default function DashboardPage() {
   )
 }
 
-function statusColor(status: string) {
-  const map: Record<string, string> = {
-    pending: '#f59e0b',
-    processing: '#3b82f6',
-    completed: '#10b981',
-    failed: '#ef4444',
-  }
-  return map[status] ?? '#6b7280'
+function statusColor(s: string) {
+  return ({ pending: '#f59e0b', processing: '#3b82f6', completed: '#10b981', failed: '#ef4444' } as Record<string, string>)[s] ?? '#6b7280'
 }
 
 const styles: Record<string, React.CSSProperties> = {
   main: { maxWidth: '1100px', margin: '0 auto', padding: '2rem 1.5rem' },
   pageHeader: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' },
   heading: { fontSize: '1.5rem', fontWeight: 700 },
-  primaryBtn: {
-    padding: '0.5rem 1.25rem',
-    background: 'var(--color-primary)',
-    color: '#fff',
-    border: 'none',
-    borderRadius: 'var(--radius)',
-    fontSize: '0.9rem',
-    fontWeight: 600,
-    cursor: 'pointer',
-  },
+  primaryBtn: { padding: '0.5rem 1.25rem', background: 'var(--color-primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' },
   statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' },
   section: { background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius)', padding: '1.5rem', marginBottom: '1.5rem' },
   sectionTitle: { fontSize: '1rem', fontWeight: 600, marginBottom: '1rem' },
