@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "omni-biosystems32",
-    "public": "frontend/dist",
+    "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
