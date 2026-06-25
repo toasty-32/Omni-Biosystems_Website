@@ -1,14 +1,12 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import AuthForm from '../components/auth/AuthForm'
 
 export default function LoginPage() {
   const { signIn } = useAuth()
-  const navigate = useNavigate()
 
   const handleLogin = async (email: string, password: string) => {
     await signIn(email, password)
-    navigate('/dashboard')
   }
 
   return (
