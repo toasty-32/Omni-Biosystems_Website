@@ -22,7 +22,7 @@ def _doc_to_sample(doc) -> Sample:
     )
 
 
-@router.get('/', response_model=list[Sample])
+@router.get('', response_model=list[Sample])
 def list_samples(current_user: dict = Depends(get_current_user)):
     db = get_db()
     docs = (
@@ -34,7 +34,7 @@ def list_samples(current_user: dict = Depends(get_current_user)):
     return [_doc_to_sample(d) for d in docs]
 
 
-@router.post('/', response_model=Sample, status_code=status.HTTP_201_CREATED)
+@router.post('', response_model=Sample, status_code=status.HTTP_201_CREATED)
 def create_sample(body: SampleCreate, current_user: dict = Depends(get_current_user)):
     db = get_db()
     payload = {
