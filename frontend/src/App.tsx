@@ -14,9 +14,9 @@ export default function App() {
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
       <Route path="/register" element={user ? <Navigate to="/dashboard" replace /> : <RegisterPage />} />
-      <Route path="/dashboard" element={user ? <DashboardPage /> : <Navigate to="/login" replace />} />
-      <Route path="/profile" element={user ? <ProfilePage /> : <Navigate to="/login" replace />} />
-      <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} replace />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   )
 }

@@ -18,11 +18,5 @@ api.interceptors.request.use(async (config) => {
 
 api.interceptors.response.use(
   (res) => res,
-  async (err) => {
-    if (err.response?.status === 401) {
-      await auth.signOut()
-      window.location.href = '/login'
-    }
-    return Promise.reject(err)
-  }
+  (err) => Promise.reject(err)
 )
