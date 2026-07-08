@@ -45,6 +45,7 @@
 
   --maxw:1180px;
   --r:14px;
+  --wm-opacity:.10; /* light-section logo watermark strength — raise toward .16 for more presence, lower toward .05 for subtler */
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -109,9 +110,9 @@ header.nav.scrolled{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;}
 .brand{display:flex;align-items:center;gap:14px;}
-.brand-lockup{height:44px;width:auto;display:block;transition:height .4s ease;}
-header.nav.scrolled .brand-lockup{height:38px;}
-.foot-lockup{height:40px;}
+.brand-lockup{height:56px;width:auto;display:block;transition:height .4s ease;}
+header.nav.scrolled .brand-lockup{height:46px;}
+.foot-lockup{height:50px;}
 .mark{width:34px;height:34px;flex:none;}
 .brand-name{font-family:var(--display);font-weight:700;font-size:19px;color:var(--white);letter-spacing:.02em;line-height:1;}
 .brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);display:block;margin-top:3px;}
@@ -194,6 +195,13 @@ section.block{padding:104px 0;position:relative;}
 
 /* ════════════════ PLATFORM (light) ════════════════ */
 .platform{background:var(--paper);color:var(--ink);}
+.platform,.team{overflow:hidden;}
+.section-watermark{position:absolute;pointer-events:none;user-select:none;z-index:0;opacity:var(--wm-opacity,.10);}
+.section-watermark img{display:block;width:100%;height:auto;}
+.platform .wrap,.team .wrap{position:relative;z-index:1;}
+.wm-platform{width:460px;top:-70px;right:-110px;}
+.wm-team{width:420px;top:-60px;right:-120px;}
+@media(max-width:680px){.wm-platform{width:280px;top:-40px;right:-90px;}.wm-team{width:260px;top:-40px;right:-90px;}}
 .platform .eyebrow{color:var(--teal);}
 .platform h2{color:var(--ink);}
 .platform .lead{color:var(--ink-soft);}
@@ -254,7 +262,8 @@ section.block{padding:104px 0;position:relative;}
 .team h2{color:var(--ink);}
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .member{background:var(--white);border:1px solid var(--paper-2);border-radius:var(--r);padding:30px 26px;}
-.avatar{width:64px;height:64px;border-radius:50%;background:var(--navy);color:var(--cyan);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:20px;letter-spacing:.03em;}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--navy);color:var(--cyan);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:20px;letter-spacing:.03em;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .member h3{font-size:19px;color:var(--ink);}
 .member .role{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:6px 0 16px;}
 .member ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
@@ -427,6 +436,7 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
 
 <!-- ══════════ PLATFORM ══════════ -->
 <section class="block platform" id="platform">
+  <div class="section-watermark wm-platform"><img src="/assets/logo/omni-logo.svg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The platform</span>
@@ -521,6 +531,7 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
 
 <!-- ══════════ TEAM ══════════ -->
 <section class="block team" id="team">
+  <div class="section-watermark wm-team"><img src="/assets/logo/omni-logo.svg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The founding team</span>
@@ -528,7 +539,7 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
     </div>
     <div class="team-grid">
       <div class="member reveal">
-        <div class="avatar">NO</div>
+        <div class="avatar"><img src="/assets/team/nicholas-oh.png" alt="Nicholas Oh" width="129" height="129"></div>
         <h3>Nicholas Oh</h3>
         <div class="role">Chief Executive Officer</div>
         <ul>
@@ -540,7 +551,7 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
         </ul>
       </div>
       <div class="member reveal">
-        <div class="avatar">CT</div>
+        <div class="avatar"><img src="/assets/team/chris-tostado.png" alt="Dr. Christopher Tostado" width="129" height="129"></div>
         <h3>Dr. Christopher Tostado</h3>
         <div class="role">Chief Scientific Officer</div>
         <ul>
@@ -552,7 +563,7 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
         </ul>
       </div>
       <div class="member reveal">
-        <div class="avatar">HT</div>
+        <div class="avatar"><img src="/assets/team/hui-tang.png" alt="Hui Tang" width="129" height="129"></div>
         <h3>Hui Tang</h3>
         <div class="role">CFO / Business Development</div>
         <ul>
