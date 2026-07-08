@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 130.02 130.02">
+  <defs>
+    <mask id="mask" x="0" y="0" width="130.02" height="130.02" maskUnits="userSpaceOnUse">
+      <g>
+        <circle cx="64.97" cy="65.01" r="55" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M60.74,34.82l-.9.17c-.56.1-1.11.21-1.65.33-11.3,2.61-20.16,11.61-22.56,22.99l-.17.86-.09.36" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M35.31,69.3l.09.4.1.47c.15.65.27,1.3.43,1.94,2.75,10.62,11.18,18.95,21.84,21.58.11.03.21.05.32.08l1.44.31,1.09.13" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M94.73,68.8c-.06.35-.25,1.22-.31,1.56-.06.32-.13.63-.2.94-2.87,12.46-13.5,21.96-26.53,23.12" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M70.49,35.06c.09.02.17.03.25.05,11.31,2.21,20.35,10.77,23.25,21.82.22.83.4,1.67.55,2.53" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M70.23,35.01c.09.02.17.03.26.05" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M70.1,34.99s.09.02.13.02" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M69.97,34.97s.08.01.12.02" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M69.01,34.82c.32.04.64.09.96.15" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M68.48,34.75c.18.02.36.04.53.07" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M68.04,34.71c.15.01.29.03.43.05" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <circle cx="64.97" cy="32.83" r="4.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4"/>
+        <circle cx="96.79" cy="64.17" r="4.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4"/>
+        <circle cx="33.5" cy="64.17" r="4.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4"/>
+        <circle cx="64.97" cy="96.27" r="4.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4"/>
+        <path d="M30.63,60.08c-4.61-18.05,4.93-38.08,21.63-46.37,3.88-1.93,7.79-2.86,12.36-3.34,7.2-.77,16.66,2.09,16.66,2.09" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M9.97,65.01c2.58,24.21,27.82,40.03,50.07,34.35l.74-.2" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M69.97,30.67c22.25-5.69,47.42,10.13,50,34.35" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M63.78,120c24.16-2.56,40.23-27.66,34.55-49.83l-.19-.84" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="5"/>
+      </g>
+    </mask>
+    <linearGradient id="linear-gradient" x1="264.33" y1="-1099.2" x2="394.33" y2="-1099.2" gradientTransform="translate(1181.61 -199.38) rotate(-120)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c59ba"/>
+      <stop offset=".24" stop-color="#2179be"/>
+      <stop offset=".57" stop-color="#28a0c4"/>
+      <stop offset=".84" stop-color="#2cb9c7"/>
+      <stop offset="1" stop-color="#2ec2c9"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g mask="url(#mask)">
+      <circle cx="65.01" cy="65.01" r="65" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

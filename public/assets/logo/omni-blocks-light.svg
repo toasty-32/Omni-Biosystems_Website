@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 172 154">
+  <defs>
+    <mask id="mask" x="13.5" y="9" width="60" height="60" maskUnits="userSpaceOnUse">
+      <g>
+        <circle cx="43.48" cy="39" r="25.38" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M41.53,25.07l-.42.08c-.26.04-.51.1-.76.15-5.22,1.21-9.3,5.36-10.41,10.61l-.08.39-.04.16" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M29.79,40.98l.04.19.05.22c.07.3.12.6.2.89,1.27,4.9,5.16,8.74,10.08,9.96.05.01.1.02.15.04l.66.14.5.06" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M57.21,40.75c-.03.16-.11.56-.15.72-.03.15-.06.29-.09.43-1.32,5.75-6.23,10.13-12.24,10.67" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M46.03,25.18s.08.01.12.02c5.22,1.02,9.39,4.97,10.73,10.07.1.38.18.77.25,1.17" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M45.91,25.16s.08.01.12.02" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M45.85,25.15s.04,0,.06.01" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M45.79,25.14s.04,0,.06,0" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M45.35,25.07c.15.02.3.04.44.07" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M45.1,25.04c.08,0,.16.02.25.03" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M44.9,25.02c.07,0,.13.01.2.02" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <circle cx="43.48" cy="24.15" r="2.08" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.85"/>
+        <circle cx="58.16" cy="38.61" r="2.08" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.85"/>
+        <circle cx="28.96" cy="38.61" r="2.08" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.85"/>
+        <circle cx="43.48" cy="53.43" r="2.08" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.85"/>
+        <path d="M27.63,36.73c-2.13-8.33,2.28-17.57,9.98-21.4,1.79-.89,3.59-1.32,5.7-1.54,3.32-.35,7.69.96,7.69.96" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M18.1,39c1.19,11.17,12.84,18.47,23.11,15.85l.34-.09" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M45.79,23.15c10.27-2.62,21.88,4.68,23.07,15.85" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+        <path d="M42.93,64.37c11.15-1.18,18.56-12.76,15.94-22.99l-.09-.39" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.31"/>
+      </g>
+    </mask>
+    <linearGradient id="linear-gradient" x1="1863.17" y1="-948.62" x2="1923.16" y2="-948.62" gradientTransform="translate(1811.61 1204.22) rotate(-120)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c59ba"/>
+      <stop offset=".24" stop-color="#2179be"/>
+      <stop offset=".57" stop-color="#28a0c4"/>
+      <stop offset=".84" stop-color="#2cb9c7"/>
+      <stop offset="1" stop-color="#2ec2c9"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path d="M26.6,98.33h5.14l12,15.6,11.57-15.6h5.09v33.6h-5.81v-23.28l-10.22,13.35h-1.49l-10.46-13.39v23.33h-5.81v-33.6Z"/>
+    <rect x="1" y="77" width="85" height="76" rx="5.02" ry="5.02" fill="none" stroke="#231f20" stroke-linejoin="round" stroke-width="2"/>
+    <rect x="1" y="1" width="85" height="76" rx="5.02" ry="5.02" fill="none" stroke="#231f20" stroke-linejoin="round" stroke-width="2"/>
+    <path d="M166,1h-74.98c-2.77,0-5.02,2.25-5.02,5.02v65.97c0,2.77,2.25,5.02,5.02,5.02h74.97c2.77,0,5.02-2.25,5.02-5.02V6c0-2.76-2.24-5-5-5Z" fill="none" stroke="#231f20" stroke-linejoin="round" stroke-width="2"/>
+    <rect x="86" y="77" width="85" height="76" rx="5.02" ry="5.02" fill="none" stroke="#231f20" stroke-linejoin="round" stroke-width="2"/>
+    <path d="M125.71,98.48h5.81v33.6h-5.81v-33.6Z"/>
+    <path d="M137.52,55.96l-18.53-22.9v22.9h-5.67V22.36h4.51l18.53,22.99v-22.99h5.67v33.6h-4.51Z"/>
+    <g mask="url(#mask)">
+      <circle cx="43.5" cy="39" r="29.99" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

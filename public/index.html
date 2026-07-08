@@ -13,6 +13,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#071838">
+
 <style>
 :root{
   --navy:#0B1B3A;
@@ -102,6 +109,9 @@ header.nav.scrolled{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;}
 .brand{display:flex;align-items:center;gap:14px;}
+.brand-lockup{height:32px;width:auto;display:block;transition:height .4s ease;}
+header.nav.scrolled .brand-lockup{height:28px;}
+.foot-lockup{height:30px;}
 .mark{width:34px;height:34px;flex:none;}
 .brand-name{font-family:var(--display);font-weight:700;font-size:19px;color:var(--white);letter-spacing:.02em;line-height:1;}
 .brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);display:block;margin-top:3px;}
@@ -333,19 +343,7 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top" aria-label="Omni Biosystems home">
-      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-        <rect x="3" y="3" width="94" height="94" rx="14" fill="none" stroke="#1BB3C4" stroke-width="4"/>
-        <line x1="50" y1="8" x2="50" y2="92" stroke="#1E3A66" stroke-width="3"/>
-        <line x1="8" y1="50" x2="92" y2="50" stroke="#1E3A66" stroke-width="3"/>
-        <text x="27" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">O</text>
-        <text x="73" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">N</text>
-        <text x="27" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
-        <text x="73" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#37D6E6" text-anchor="middle">I</text>
-      </svg>
-      <span>
-        <span class="brand-name">Omni Biosystems</span>
-        <span class="brand-sub">OncoMiMIC&nbsp;Platform</span>
-      </span>
+      <img class="brand-lockup" src="/assets/logo/omni-lockup-dark.svg" alt="Omni Biosystems" width="512" height="154">
     </a>
     <nav class="nav-links" id="navlinks">
       <a href="#platform">Platform</a>
@@ -638,17 +636,8 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:50px 
 <footer>
   <div class="wrap">
     <div class="foot">
-      <a class="brand" href="#top">
-        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-          <rect x="3" y="3" width="94" height="94" rx="14" fill="none" stroke="#1BB3C4" stroke-width="4"/>
-          <line x1="50" y1="8" x2="50" y2="92" stroke="#1E3A66" stroke-width="3"/>
-          <line x1="8" y1="50" x2="92" y2="50" stroke="#1E3A66" stroke-width="3"/>
-          <text x="27" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">O</text>
-          <text x="73" y="38" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">N</text>
-          <text x="27" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
-          <text x="73" y="78" font-family="Space Grotesk,sans-serif" font-size="26" font-weight="700" fill="#37D6E6" text-anchor="middle">I</text>
-        </svg>
-        <span class="brand-name">Omni Biosystems</span>
+      <a class="brand" href="#top" aria-label="Omni Biosystems home">
+        <img class="brand-lockup foot-lockup" src="/assets/logo/omni-lockup-dark.svg" alt="Omni Biosystems" width="512" height="154">
       </a>
       <div class="foot-links">
         <a href="#platform">Platform</a>
