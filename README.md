@@ -25,11 +25,24 @@ omni-biosystems-web/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml      # Auto-deploy to Firebase on push to main
+├── server/                 # Contact-form backend (Cloud Run + Mailgun) — see server/README.md
+│   ├── index.js            # POST /contact: validation, honeypot, rate limit, send
+│   ├── templates.js        # The five persona auto-reply emails
+│   ├── Dockerfile
+│   └── package.json
 ├── firebase.json           # Firebase Hosting config
 ├── .firebaserc             # Firebase project alias
 ├── .gitignore
 └── README.md
 ```
+
+## Contact backend
+
+The website form posts to a small Cloud Run service in `server/` that sends mail via
+Mailgun (sending domain `mg.omni-biosystems.com`): it notifies `contact@omni-biosystems.com`
+and sends the visitor a persona-specific auto-reply. Full setup, DNS, and deploy steps are
+in [`server/README.md`](server/README.md). Until it's deployed and `API_ENDPOINT` is set in
+`index.html`, the form falls back to opening the visitor's mail app.
 
 ## Brand assets
 

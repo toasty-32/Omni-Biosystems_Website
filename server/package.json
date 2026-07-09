@@ -1,0 +1,20 @@
+{
+  "name": "omni-contact-api",
+  "version": "1.0.0",
+  "description": "Contact-form backend for omni-biosystems.com — validates submissions and sends mail via Mailgun.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "form-data": "^4.0.0",
+    "mailgun.js": "^10.2.3"
+  }
+}
