@@ -12,15 +12,27 @@
     "headers": [
       {
         "source": "**/*.@(js|css)",
-        "headers": [{ "key": "Cache-Control", "value": "max-age=604800" }]
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        ]
       },
       {
-        "source": "**/*.@(jpg|jpeg|png|svg|webp|mp4|webm)",
-        "headers": [{ "key": "Cache-Control", "value": "max-age=31536000, immutable" }]
+        "source": "**/*.@(jpg|jpeg|png|svg|webp|mp4|webm|ico)",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=86400" }
+        ]
       },
       {
         "source": "**/*.html",
-        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        ]
+      },
+      {
+        "source": "/site.webmanifest",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
       }
     ]
   }
