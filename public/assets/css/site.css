@@ -13,7 +13,7 @@
   --wm-opacity:.10;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 section[id]{scroll-margin-top:96px}
 body{background:var(--navy);color:var(--ice);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
@@ -178,6 +178,12 @@ section.block{padding:100px 0;position:relative}
 .stat .num .u{color:var(--cyan)}
 .stat .lbl{margin-top:14px;font-size:14.5px;color:var(--ice-dim)}
 
+/* responsive grid helpers — use these instead of inline grid styles,
+   which would override the media queries below and break mobile layout */
+.science-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.subsys.cols-3{grid-template-columns:repeat(3,1fr)}
+.card.span-2{grid-column:span 2}
+
 /* comparison table */
 .cmp{width:100%;border-collapse:collapse;font-size:14.5px}
 .cmp th,.cmp td{text-align:left;padding:15px 14px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -314,6 +320,10 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:48px 
 @media(max-width:1080px){
   .nav-wrap{display:none}
   .menu-btn{display:grid;place-items:center}
+  .hero{display:flex;flex-direction:column;align-items:stretch}
+  .hero-chip .hero-inner{order:1}
+  .hero-chip .chipstage{order:2}
+  .hero-chip .hero-inner > *{max-width:none}
   .nav-wrap.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--navy-900);padding:14px 22px 22px;border-bottom:1px solid var(--line);max-height:76vh;overflow-y:auto}
   .nav-wrap.open .nav-links{flex-direction:column;align-items:stretch;gap:0;width:100%}
@@ -329,19 +339,37 @@ footer{background:var(--navy-900);border-top:1px solid var(--line);padding:48px 
 }
 @media(max-width:1000px){
   .subsys,.cards,.trio,.team-grid{grid-template-columns:1fr 1fr}
+  .subsys.cols-3{grid-template-columns:1fr 1fr}
+  .card.span-2{grid-column:span 2}
   .steps,.timeline{grid-template-columns:1fr 1fr;gap:26px}
   .step::before,.tl::before{display:none}
   .contact-grid,.science-grid{grid-template-columns:1fr;gap:40px}
 }
 @media(max-width:680px){
   .subsys,.cards,.trio,.team-grid,.stat-row,.market,.steps,.timeline{grid-template-columns:1fr}
+  .subsys.cols-3{grid-template-columns:1fr}
+  .card.span-2{grid-column:span 1}
+  .science-grid{grid-template-columns:1fr}
   .market div{border-right:none;border-bottom:1px solid var(--line)}
   .market div:last-child{border-bottom:none}
   section.block{padding:70px 0}
   .frow.two{grid-template-columns:1fr}
   .inv-strip{flex-direction:column;align-items:flex-start}
   .foot{flex-direction:column;align-items:flex-start}
-  .hud-clock{bottom:150px} .hud-legend{display:none}
+
+  /* wide comparison table: scroll it rather than let it widen the page */
+  .cmp{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  .cmp th,.cmp td{white-space:normal;min-width:110px}
+
+  /* full-bleed hero HUD: put the readouts into normal flow so they can't
+     collide with the CTA buttons */
+  .hero-bleed{min-height:0;padding:132px 0 40px}
+  .hud-caption{position:static;padding:0 28px;margin-bottom:26px}
+  .hud-clock{position:static;text-align:left;padding:0 28px;margin-top:30px}
+  .hud-clock .t{font-size:24px}
+  .hud-chips{position:static;padding:0 28px;margin-top:22px;flex-wrap:wrap}
+  .hud-legend{display:none}
+  .chipcap{position:static;text-align:center;margin-top:20px;right:auto;bottom:auto}
 }
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1!important;transform:none!important;transition:none}
