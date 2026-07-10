@@ -93,7 +93,7 @@ header.nav.scrolled .brand-lockup{height:44px}
    --chip-right / --chip-w are tuned so the empty space to the LEFT of the chip
    (gap from the copy column) roughly equals the empty space to its RIGHT
    (gap to the viewport edge). Adjust these two values to nudge it. */
-.hero-chip{--chip-right:7.7%;--chip-w:34%;
+.hero-chip{--chip-right:5.5%;--chip-w:38%;
   background:radial-gradient(900px 620px at 68% 48%,rgba(27,179,196,.13),rgba(11,27,58,0) 66%),linear-gradient(180deg,var(--navy-900),var(--navy))}
 /* keep the copy column clear of the chip so the gutters either side stay even */
 .hero-chip .hero-inner > *{max-width:600px}
