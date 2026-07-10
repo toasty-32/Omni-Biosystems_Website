@@ -155,6 +155,16 @@ const TEMPLATES = {
       `A member of our scientific team will follow up within two business days. If you have a specific model, indication, or research question in mind, feel free to reply with details — it'll help us make the first conversation a productive one.`,
     ],
   },
+  'Consulting & integration': {
+    layout: 'lightEditorial',
+    subject: 'Thanks for reaching out to Omni Biosystems',
+    paragraphs: (n) => [
+      `Hi ${n},`,
+      `Thank you for getting in touch about assay migration, chip design, or automation — this is work we care a great deal about.`,
+      `Omni Biosystems designs, manufactures, and automates microphysiological systems. We build injection-molded microfluidic chips, the optics and robotic liquid handling around them, and the AI vision pipelines that turn days of manual scoring into minutes. Everything we would build for you, we built for our own OncoMiMIC platform first.`,
+      `A member of our team will follow up within two business days. Most engagements begin with a short, fixed-fee scoping sprint — we look at your protocol and tell you honestly whether a chip format helps your assay, including when the answer is no. If you can share the assay type, your current throughput, and what you are hoping to change, we will come to the first call prepared.`,
+    ],
+  },
   Press: {
     layout: 'navyBanner',
     subject: 'Omni Biosystems — media inquiry received',
