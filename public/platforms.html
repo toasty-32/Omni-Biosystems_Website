@@ -27,14 +27,44 @@
     <a class="brand" href="/" aria-label="Omni Biosystems home">
       <img class="brand-lockup" src="/assets/logo/omni-lockup-dark.svg" alt="Omni Biosystems" width="512" height="154">
     </a>
-    <nav class="nav-links" id="navlinks">
-      <a href="/platforms" class="active">Technology Platforms</a>
-      <a href="/integration">Integration</a>
-      <a href="/consulting">Consulting</a>
-      <a href="/investors">Investors</a>
+    <nav class="nav-wrap" id="navlinks" aria-label="Main">
+      <ul class="nav-links">
+      <li><a class="nav-top" href="/">Home</a></li>
+      <li class="has-menu">
+        <button type="button" class="nav-top active" aria-expanded="false" aria-haspopup="true">
+          Technology Platforms
+          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a href="/oncomimic" role="menuitem">OncoMiMIC</a></li>
+          <li><a href="/platforms" role="menuitem">Other Platforms</a></li>
+        </ul>
+      </li>
+      <li class="has-menu">
+        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
+          Integration
+          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a href="/integration" role="menuitem">Learn More</a></li>
+        </ul>
+      </li>
+      <li class="has-menu">
+        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
+          Consulting
+          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a href="/consulting#assay-design" role="menuitem">Chip-based in-vitro assay design</a></li>
+          <li><a href="/consulting#automation" role="menuitem">Automation of existing in-vitro assays</a></li>
+          <li><a href="/consulting#computer-vision" role="menuitem">Computer Vision Solutions</a></li>
+        </ul>
+      </li>
+      <li><a class="nav-top" href="/investors">Investors</a></li>
+      </ul>
       <a href="/#contact" class="btn btn-primary nav-cta">Get in touch</a>
     </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
@@ -44,7 +74,7 @@
   <div class="hero-grid"></div>
   <div class="chipstage">
     <div class="chipglow"></div>
-    <video autoplay muted loop playsinline poster="/assets/video/chip-poster.jpg" aria-label="Chip rotating">
+    <video autoplay muted loop playsinline poster="/assets/video/chip-poster.png" preload="auto" aria-label="Chip rotating">
       <source src="/assets/video/chip-alpha.webm" type="video/webm">
       <source src="/assets/video/chip-loop.mp4" type="video/mp4">
     </video>
@@ -139,10 +169,10 @@
         <img class="brand-lockup foot-lockup" src="/assets/logo/omni-lockup-dark.svg" alt="Omni Biosystems" width="512" height="154">
       </a>
       <div class="foot-links">
-        <a href="/platforms">Technology Platforms</a>
         <a href="/oncomimic">OncoMiMIC</a>
+        <a href="/platforms">Other Platforms</a>
         <a href="/integration">Systems Integration</a>
-        <a href="/consulting">Assay Migration &amp; Consulting</a>
+        <a href="/consulting">Consulting</a>
         <a href="/investors">For Investors</a>
         <a href="/#contact">Contact</a>
       </div>

@@ -19,11 +19,88 @@ var CONTACT_EMAIL = "contact@omni-biosystems.com";
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* mobile menu */
-  var menuBtn = document.getElementById('menuBtn'), navlinks = document.getElementById('navlinks');
-  if (menuBtn && navlinks) {
-    menuBtn.addEventListener('click', function () { navlinks.classList.toggle('open'); });
-    navlinks.addEventListener('click', function (e) { if (e.target.tagName === 'A') navlinks.classList.remove('open'); });
+  /* ── nav: dropdown menus (hover on desktop, tap on touch/mobile) ── */
+  var menuBtn = document.getElementById('menuBtn'), navwrap = document.getElementById('navlinks');
+  var hasMenus = document.querySelectorAll('.has-menu');
+  var isDesktop = function () { return window.matchMedia('(min-width: 1081px)').matches; };
+  var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  function closeAll(except) {
+    hasMenus.forEach(function (li) {
+      if (li === except) return;
+      li.classList.remove('open');
+      var btn = li.querySelector('.nav-top');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+  function toggle(li, force) {
+    var btn = li.querySelector('.nav-top');
+    var open = (force === undefined) ? !li.classList.contains('open') : force;
+    li.classList.toggle('open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  hasMenus.forEach(function (li) {
+    var btn = li.querySelector('.nav-top');
+
+    /* click / tap always toggles — parent never navigates.
+       On hover-capable desktop the menu is already open from mouseenter, so a mouse
+       click should keep it open rather than immediately toggling it shut. Keyboard
+       activation (detail === 0) still toggles, so Enter/Space can close it. */
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var keyboard = e.detail === 0;
+      if (hoverCapable && isDesktop() && !keyboard) {
+        closeAll(li); toggle(li, true);
+        return;
+      }
+      var willOpen = !li.classList.contains('open');
+      closeAll(li);
+      toggle(li, willOpen);
+    });
+
+    /* hover only on desktop pointers */
+    if (hoverCapable) {
+      li.addEventListener('mouseenter', function () { if (isDesktop()) { closeAll(li); toggle(li, true); } });
+      li.addEventListener('mouseleave', function () { if (isDesktop()) toggle(li, false); });
+    }
+
+    /* keyboard */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault(); toggle(li, true);
+        var first = li.querySelector('.submenu a'); if (first) first.focus();
+      } else if (e.key === 'Escape') { toggle(li, false); btn.focus(); }
+    });
+    li.querySelectorAll('.submenu a').forEach(function (a, i, all) {
+      a.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); (all[i + 1] || all[0]).focus(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); (all[i - 1] || all[all.length - 1]).focus(); }
+        else if (e.key === 'Escape') { toggle(li, false); btn.focus(); }
+      });
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.has-menu')) closeAll();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+  window.addEventListener('resize', function () { closeAll(); }, { passive: true });
+
+  if (menuBtn && navwrap) {
+    menuBtn.addEventListener('click', function () {
+      var open = navwrap.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) closeAll();
+    });
+    /* a real link inside the menu closes it; parent buttons do not */
+    navwrap.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        navwrap.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        closeAll();
+      }
+    });
   }
 
   /* reveal on scroll */
