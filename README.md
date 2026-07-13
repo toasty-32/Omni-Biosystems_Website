@@ -1,40 +1,83 @@
 # Omni Biosystems — Website
 
-Static website for [omni-biosystems.com](https://omni-biosystems.com), built as a single-page HTML file and hosted on Firebase Hosting.
+Bilingual (English + Simplified Chinese) marketing site for
+[omni-biosystems.com](https://omni-biosystems.com), hosted on Firebase Hosting.
+Six pages per language, generated from shared templates by a small Python build.
+
+- **English** at `/` (e.g. `/oncomimic`)
+- **中文** at `/zh/` (e.g. `/zh/oncomimic`) — parallel tree, EN/中文 toggle in the header
 
 ## Repository structure
 
 ```
 omni-biosystems-web/
-├── public/
-│   ├── index.html              # The full website (single file)
-│   ├── favicon.svg             # Tab icon (aperture on navy tile, scalable)
-│   ├── favicon-16.png          # Tab icon fallback (standard-DPI)
-│   ├── favicon-32.png          # Tab icon fallback
-│   ├── apple-touch-icon.png    # iOS home screen (blocks mark, 180px)
-│   ├── icon-192.png            # PWA / Android icon (maskable)
-│   ├── icon-512.png            # PWA / Android icon (maskable)
+├── public/                     # ← DEPLOYED OUTPUT (generated; edit via build/, not by hand)
+│   ├── index.html              # EN homepage
+│   ├── platforms.html          # EN: Technology Platforms
+│   ├── oncomimic.html          # EN: OncoMiMIC platform
+│   ├── integration.html        # EN: Systems Integration
+│   ├── consulting.html         # EN: Consulting
+│   ├── investors.html          # EN: For Investors
+│   ├── zh/                     # Simplified Chinese tree (same six pages)
+│   │   ├── index.html … investors.html
+│   ├── favicon.svg / *.png     # Icon family
 │   ├── site.webmanifest        # PWA manifest
 │   └── assets/
-│       └── logo/
-│           ├── omni-lockup-dark.svg    # Full lockup for dark backgrounds (nav, footer)
-│           ├── omni-lockup-light.svg   # Full lockup for light backgrounds
-│           ├── omni-blocks-dark.svg    # 2x2 grid mark, dark backgrounds
-│           ├── omni-blocks-light.svg   # 2x2 grid mark, light backgrounds
-│           └── omni-logo.svg           # Aperture symbol
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      # Auto-deploy to Firebase on push to main
-├── server/                 # Contact-form backend (Cloud Run + Mailgun) — see server/README.md
-│   ├── index.js            # POST /contact: validation, honeypot, rate limit, send
-│   ├── templates.js        # The five persona auto-reply emails
-│   ├── Dockerfile
-│   └── package.json
-├── firebase.json           # Firebase Hosting config
-├── .firebaserc             # Firebase project alias
-├── .gitignore
-└── README.md
+│       ├── css/site.css        # All styling (shared by both languages)
+│       ├── js/site.js          # Nav, dropdowns, language toggle, contact form
+│       ├── logo/ img/ video/   # Brand + media assets
+│       └── …
+├── build/                      # ← SOURCE. Run these to regenerate public/
+│   ├── build_all.py            # Driver: builds EN then ZH into public/
+│   ├── build_pages.py          # Shared chrome (head/nav/footer), i18n, hreflang
+│   ├── pages_a.py              # index + oncomimic bodies
+│   ├── pages_b.py              # integration + consulting + investors bodies
+│   ├── pages_c.py              # platforms body
+│   ├── translations.py         # EN→ZH string map (reviewer-editable)
+│   └── cachebust.py            # Stamps ?v=<hash> on every asset URL
+├── .github/workflows/deploy.yml  # Auto-deploy to Firebase on push to main
+├── server/                     # Contact-form backend (Cloud Run + Mailgun)
+├── firebase.json               # Hosting config (cleanUrls, cache headers)
+├── .firebaserc  .gitignore  README.md
 ```
+
+## Building the site
+
+The **HTML files in `public/` are generated and not committed to git** — the GitHub
+Actions workflow builds them on every push (see [Auto-deploy](#auto-deploy)). The
+`build/` directory is the single source of truth for page copy and structure.
+
+> Everything else in `public/` — `assets/` (CSS, JS, logos, images, video), the
+> favicons, and `site.webmanifest` — **is** source and **is** committed. Only the
+> 12 generated `.html` files are git-ignored.
+
+To preview locally, generate them yourself:
+
+```bash
+cd build
+python3 build_all.py          # writes both EN (/) and ZH (/zh/) into ../public
+# normalize .html links to clean URLs in both trees:
+cd ../public && for d in . zh; do \
+  sed -i 's|href="\(/[a-z]*\)\.html"|href="\1"|g; s|href="\(/zh/[a-z]*\)\.html"|href="\1"|g' $d/*.html; done
+cd ../build && python3 cachebust.py   # re-stamp asset hashes (also verifies them)
+
+# serve for preview
+cd ../public && python3 -m http.server 8000   # → http://localhost:8000
+```
+
+`cachebust.py` appends a content hash to every asset URL (`site.css?v=abc12345`)
+so a changed file always busts the browser cache, and it **verifies** every
+reference matches the file on disk (exits non-zero on mismatch — which also fails
+the CI build).
+
+### Translations
+
+`build/translations.py` is a flat `EN → ZH` dictionary — the left side is the exact
+English string, the right side its Simplified Chinese. A reviewer can edit the Chinese
+in place and re-run the build; nothing else needs to change. Brand/technical tokens
+(`OncoMiMIC`, `A*STAR`, `NK-92MI`, `IC50`, currency, etc.) are intentionally left in
+Latin script. The three hero taglines and the 区拟 name story are transcreated, not
+literal — see the comments in that file.
 
 ## Contact backend
 
@@ -50,7 +93,11 @@ The favicon family is deliberately split for legibility: the **aperture** symbol
 
 ## Auto-deploy
 
-Every push to `main` triggers the GitHub Actions workflow, which deploys `public/` to Firebase Hosting automatically. No manual `firebase deploy` needed after initial setup.
+Every push to `main` triggers the GitHub Actions workflow (`.github/workflows/deploy.yml`),
+which **builds** the site (`build/build_all.py` → EN + ZH into `public/`, then clean-URL
+rewrite and `cachebust.py`) and deploys `public/` to Firebase Hosting. The build step fails
+the deploy if any asset hash is inconsistent, so a broken build never ships. No manual
+`firebase deploy` — and no need to commit generated HTML.
 
 ## One-time setup (do this once)
 

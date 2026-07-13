@@ -1,90 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omni Biosystems — Drug discovery, re-created on a chip</title>
-<meta name="description" content="Omni Biosystems designs, manufactures, and automates microphysiological systems. Home of the OncoMiMIC platform, systems integration, and assay migration consulting.">
-<meta property="og:title" content="Omni Biosystems — Drug discovery, re-created on a chip">
-<meta property="og:description" content="Omni Biosystems designs, manufactures, and automates microphysiological systems. Home of the OncoMiMIC platform, systems integration, and assay migration consulting.">
-<meta property="og:type" content="website">
-<link rel="alternate" hreflang="en" href="/">
-<link rel="alternate" hreflang="zh-Hans" href="/zh/">
-<link rel="alternate" hreflang="x-default" href="/">
+#!/usr/bin/env python3
+import sys, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from build_pages import build
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css?v=fe7c4cbd">
-
-<link rel="icon" href="/favicon.svg?v=ef7169d5" type="image/svg+xml">
-<link rel="icon" href="/favicon-32.png?v=a691ec8a" sizes="32x32" type="image/png">
-<link rel="icon" href="/favicon-16.png?v=b248e0c0" sizes="16x16" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=bbe86b59">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#071838">
-</head>
-<body>
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="/" aria-label="Omni Biosystems home">
-      <img class="brand-lockup" src="/assets/logo/omni-lockup-dark.svg?v=69320a1a" alt="Omni Biosystems" width="512" height="154">
-    </a>
-    <nav class="nav-wrap" id="navlinks" aria-label="Main">
-      <ul class="nav-links">
-      <li><a class="nav-top active" href="/">Home</a></li>
-      <li class="has-menu">
-        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
-          Technology Platforms
-          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </button>
-        <ul class="submenu" role="menu">
-          <li><a href="/oncomimic" role="menuitem">OncoMiMIC</a></li>
-          <li><a href="/platforms" role="menuitem">Other Platforms</a></li>
-        </ul>
-      </li>
-      <li class="has-menu">
-        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
-          Integration
-          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </button>
-        <ul class="submenu" role="menu">
-          <li><a href="/integration" role="menuitem">Learn More</a></li>
-        </ul>
-      </li>
-      <li class="has-menu">
-        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
-          Consulting
-          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </button>
-        <ul class="submenu" role="menu">
-          <li><a href="/consulting#assay-design" role="menuitem">Chip-based in-vitro assay design</a></li>
-          <li><a href="/consulting#automation" role="menuitem">Automation of existing in-vitro assays</a></li>
-          <li><a href="/consulting#computer-vision" role="menuitem">Computer Vision Solutions</a></li>
-        </ul>
-      </li>
-      <li><a class="nav-top" href="/investors">Investors</a></li>
-      </ul>
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a href="/" class="lang-opt active" aria-current="true">EN</a>
-        <span class="lang-sep">/</span>
-        <a href="/zh/" class="lang-opt">中文</a>
-      </div>
-      <a href="/#contact" class="btn btn-primary nav-cta">Get in touch</a>
-    </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-  </div>
-</header>
-
+# ══════════════════════ HOMEPAGE ══════════════════════
+HOME = '''
 <section class="hero hero-chip" id="top">
   <div class="hero-grid"></div>
   <div class="chipstage">
     <div class="chipglow"></div>
     <video autoplay muted loop playsinline poster="/assets/video/chip-poster.png" preload="auto" aria-label="OncoMiMIC chip rotating">
-      <source src="/assets/video/chip-alpha.webm?v=dd8ffc02" type="video/webm">
-      <source src="/assets/video/chip-loop.mp4?v=8650efbe" type="video/mp4">
+      <source src="/assets/video/chip-alpha.webm" type="video/webm">
+      <source src="/assets/video/chip-loop.mp4" type="video/mp4">
     </video>
   </div>
   <div class="wrap hero-inner">
@@ -142,19 +69,19 @@
         <span class="n">01 · PLATFORM</span>
         <h3>OncoMiMIC Platform</h3>
         <p>Ex-vivo immuno-oncology on a chip. Recreate the 3D tumor microenvironment and measure immune recruitment, infiltration, and cytolytic kill — five or more readouts from a single run.</p>
-        <a class="go" href="/oncomimic">Explore OncoMiMIC →</a>
+        <a class="go" href="/oncomimic.html">Explore OncoMiMIC →</a>
       </div>
       <div class="card reveal">
         <span class="n">02 · INTEGRATION</span>
         <h3>Systems Integration</h3>
         <p>We automate chip platforms end to end — imaging optics, robotic liquid handling, and AI-driven analysis — so your assays run hands-off, overnight, and reproducibly.</p>
-        <a class="go" href="/integration">Automate your platform →</a>
+        <a class="go" href="/integration.html">Automate your platform →</a>
       </div>
       <div class="card reveal">
         <span class="n">03 · SERVICES</span>
         <h3>Assay Migration &amp; Consulting</h3>
         <p>Moving an in-vitro assay to chip format, or automating a chip platform you already run? We have done it from wafer to readout — and we will do it with you.</p>
-        <a class="go" href="/consulting">Start a conversation →</a>
+        <a class="go" href="/consulting.html">Start a conversation →</a>
       </div>
     </div>
 
@@ -164,13 +91,13 @@
         <h3>The case for Omni Biosystems</h3>
         <p>Market timing, traction, IP position, and the path from MVP chip to first revenue — everything you need to evaluate the opportunity, in one place.</p>
       </div>
-      <a href="/investors" class="btn btn-ghost">Investor overview <span class="arr">→</span></a>
+      <a href="/investors.html" class="btn btn-ghost">Investor overview <span class="arr">→</span></a>
     </div>
   </div>
 </section>
 
 <section class="block platform" id="capabilities">
-  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg?v=3640342b" alt="" aria-hidden="true"></div>
+  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Our capability stack</span>
@@ -207,7 +134,7 @@
 </section>
 
 <section class="block team" id="team">
-  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg?v=3640342b" alt="" aria-hidden="true"></div>
+  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The founding team</span>
@@ -215,17 +142,17 @@
     </div>
     <div class="team-grid">
       <div class="member reveal">
-        <div class="avatar"><img src="/assets/team/nicholas-oh.png?v=8adf35f1" alt="Nicholas Oh" width="129" height="129"></div>
+        <div class="avatar"><img src="/assets/team/nicholas-oh.png" alt="Nicholas Oh" width="129" height="129"></div>
         <h3>Nicholas Oh</h3><div class="role">Chief Executive Officer</div>
         <ul><li>Founder &amp; CEO, Enlitho Pte Ltd (est. 2017)</li><li>Raised &gt;USD 2.5M in grants + private investment</li><li>5× YoY revenue growth; ISO 9001 facility</li><li>Scaled ops to 1,000 wafers/month</li><li>BEng, SUTD (Magna Cum Laude)</li></ul>
       </div>
       <div class="member reveal">
-        <div class="avatar"><img src="/assets/team/chris-tostado.png?v=5dbbb105" alt="Dr. Christopher Tostado" width="129" height="129"></div>
+        <div class="avatar"><img src="/assets/team/chris-tostado.png" alt="Dr. Christopher Tostado" width="129" height="129"></div>
         <h3>Dr. Christopher Tostado</h3><div class="role">Chief Scientific Officer</div>
         <ul><li>Inventor on the core US microfluidics patent</li><li>Sr. Research Scientist / PI, Genome Institute of Singapore</li><li>&gt;$1M SGD in grant funding awarded</li><li>15+ years microfluidics R&amp;D</li><li>PhD Tsinghua · Dual BS, MIT</li></ul>
       </div>
       <div class="member reveal">
-        <div class="avatar"><img src="/assets/team/hui-tang.png?v=e337d64f" alt="Hui Tang" width="129" height="129"></div>
+        <div class="avatar"><img src="/assets/team/hui-tang.png" alt="Hui Tang" width="129" height="129"></div>
         <h3>Hui Tang</h3><div class="role">CFO / Business Development</div>
         <ul><li>Closed a USD 2M fundraise (2024)</li><li>Former CEO, Nufront (RMB 150M raise)</li><li>27 patents in imaging &amp; mobile tech</li><li>Cross-border BD: China, EU, US</li><li>Executive MBA, Erasmus / RSM</li></ul>
       </div>
@@ -267,25 +194,132 @@
     </div>
   </div>
 </section>
+'''
 
-<footer>
+build('index.html',
+      'Omni Biosystems — Drug discovery, re-created on a chip',
+      'Omni Biosystems designs, manufactures, and automates microphysiological systems. Home of the OncoMiMIC platform, systems integration, and assay migration consulting.',
+      HOME)
+
+
+# ══════════════════════ ONCOMIMIC ══════════════════════
+ONCO = '''
+<section class="hero hero-bleed" id="top">
+  <div class="bgvid">
+    <video id="livevid" autoplay muted loop playsinline poster="/assets/video/oncomimic-poster.jpg" aria-label="Live imaging of NK cells attacking a tumor spheroid">
+      <source src="/assets/video/oncomimic-live.webm" type="video/webm">
+      <source src="/assets/video/oncomimic-live.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim-l"></div>
+  <div class="scrim-v"></div>
+
+  <div class="hud hud-caption">HNSCC 137P spheroid · NK-92MI co-culture · OncoMiMIC chip</div>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow reveal">The OncoMiMIC Platform</span>
+    <h1 class="reveal">Watch the tumor <span class="accent">lose.</span></h1>
+    <p class="tagline reveal">OncoMiMIC recreates the tumor microenvironment on a chip — capturing immune cell recruitment, infiltration, and cytolytic kill as it happens.</p>
+    <div class="hero-actions reveal">
+      <a href="#chip" class="btn btn-primary">How the chip works <span class="arr">→</span></a>
+      <a href="/#contact?topic=Pharma%20%2F%20CRO%20partner" class="btn btn-ghost">Request a pilot study</a>
+    </div>
+  </div>
+
+  <div class="hud hud-clock"><div class="t" id="clock">T+00:00</div><div class="l">Elapsed · 20-min intervals</div></div>
+  <div class="hud hud-chips">
+    <div class="chip-stat"><div class="k">Tumor signal</div><div class="v v-dn">−41%</div></div>
+    <div class="chip-stat"><div class="k">NK effectors</div><div class="v v-up">+177%</div></div>
+  </div>
+  <div class="hud hud-legend">
+    <span><i class="dot d-t"></i>Tumor spheroid</span>
+    <span><i class="dot d-n"></i>NK-92MI effector cells</span>
+  </div>
+</section>
+
+<div class="proof">
   <div class="wrap">
-    <div class="foot">
-      <a class="brand" href="/" aria-label="Omni Biosystems home">
-        <img class="brand-lockup foot-lockup" src="/assets/logo/omni-lockup-dark.svg?v=69320a1a" alt="Omni Biosystems" width="512" height="154">
-      </a>
-      <div class="foot-links">
-        <a href="/oncomimic">OncoMiMIC</a>
-        <a href="/platforms">Other Platforms</a>
-        <a href="/integration">Systems Integration</a>
-        <a href="/consulting">Consulting</a>
-        <a href="/investors">For Investors</a>
-        <a href="/#contact">Contact</a>
+    <span><b>TRL 5</b> chip</span>
+    <span><b>5+</b> outputs per experiment</span>
+    <span><b>5–20×</b> faster analysis</span>
+    <span><b>30–144</b> data points per chip</span>
+    <span>Scalable <b>4-plex → 36-plex</b></span>
+  </div>
+</div>
+
+<section class="block" id="chip">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The technology</span>
+      <h2 class="section-h">A compartmentalized chip with four functional zones.</h2>
+      <p class="lead" style="margin-top:18px;">Effector cells are introduced outside an artificial barrier of microstructures. They are recruited across it, infiltrate the tumor compartment, and kill — every step measured automatically.</p>
+    </div>
+    <div class="zones">
+      <div class="zone-row reveal"><span class="z z0"></span><div><div class="zt">Zone 0 — Tumor seeding zone</div><div class="zd">Holds 3D patient-derived spheroids in a controlled microenvironment.</div></div></div>
+      <div class="zone-row reveal"><span class="z z1"></span><div><div class="zt">Zone 1 — Tumor–immune interaction zone</div><div class="zd">Where effector cells engage the tumor. Precise E:T ratio control and monitoring.</div></div></div>
+      <div class="zone-row reveal"><span class="z z2"></span><div><div class="zt">Zone 2 — Barrier zone</div><div class="zd">A micropillar array that immune cells must actively migrate through — making recruitment and infiltration directly quantifiable.</div></div></div>
+      <div class="zone-row reveal"><span class="z z3"></span><div><div class="zt">Zone 3 — Immune fluidic zone</div><div class="zd">Effector cell reservoir. Cells are recovered here after the run for downstream transcriptomics.</div></div></div>
+    </div>
+    <div class="callout reveal">Compatible with <b>standard microscope slides and well-plate footprints</b> — OncoMiMIC drops into the equipment your lab already owns.</div>
+  </div>
+</section>
+
+<section class="block science">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Scientific foundation</span>
+      <h2 class="section-h">Why 3D changes the answer.</h2>
+    </div>
+    <div class="science-grid">
+      <div class="reveal">
+        <table class="cmp">
+          <thead><tr><th></th><th>2D well plate</th><th class="good">OncoMiMIC 3D chip</th></tr></thead>
+          <tbody>
+            <tr><td class="metric">Morphology</td><td class="bad">Flat, elongated</td><td class="good">Native 3D shape</td></tr>
+            <tr><td class="metric">Gene expression</td><td class="bad">Far from patient tissue</td><td class="good">Matches in-vivo signatures</td></tr>
+            <tr><td class="metric">Drug sensitivity</td><td class="bad">Underestimates dose</td><td class="good">Accurate resistance modeling</td></tr>
+            <tr><td class="metric">Cell communication</td><td class="bad">Poor junctions</td><td class="good">Functional, quantifiable contact</td></tr>
+            <tr><td class="metric">Throughput</td><td class="bad">1 well = 1 data point</td><td class="good">1 chip &gt; 30–144 points</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">3D cultures yield <b>2–6× higher IC50 values</b> than 2D — standard assays systematically underestimate the dose needed for real clinical effect.</div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Data advantage</span>
+        <h3 style="font-size:26px;margin:16px 0 24px;">5+ rich outputs from a single experiment.</h3>
+        <div class="outputs">
+          <div class="out"><span class="n">01</span><span class="t">Immune cell recruitment</span></div>
+          <div class="out"><span class="n">02</span><span class="t">Immune cell infiltration</span></div>
+          <div class="out"><span class="n">03</span><span class="t">Immune-mediated cytotoxicity</span></div>
+          <div class="out"><span class="n">04</span><span><span class="t">Spatial dynamics</span> <span class="d">— AI-tracked, longitudinal</span></span></div>
+          <div class="out"><span class="n">05</span><span><span class="t">Gene expression</span> <span class="d">— recovered cells, same run</span></span></div>
+        </div>
+        <p class="lead" style="margin-top:24px;">Each run links phenotype to genotype — enabling earlier <b style="color:var(--cyan-soft)">“kill early, kill cheap”</b> decisions at the stages where they save the most.</p>
       </div>
     </div>
-    <div class="copy">© <span id="yr"></span> Omni Biosystems Pte Ltd · Singapore · OncoMiMIC™ is a platform of Omni Biosystems.</div>
   </div>
-</footer>
-<script src="/assets/js/site.js?v=62bb1d54"></script>
-</body>
-</html>
+</section>
+
+<section class="block platform">
+  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Validation</span>
+      <h2 class="section-h">Built on published science, validated with partners.</h2>
+    </div>
+    <div class="subsys cols-3">
+      <div class="sub reveal"><h3>Global CRO partnership</h3><p>A proof-of-concept project running now, with roughly $50K SGD of in-kind services. All IP developed belongs to the company.</p><span class="trl">In progress</span></div>
+      <div class="sub reveal"><h3>Peer-reviewed foundation</h3><p>Multi-compartment microfluidic work dissecting immune–epithelial interactions, published in Bioengineering &amp; Translational Medicine.</p><span class="trl">Published</span></div>
+      <div class="sub reveal"><h3>Granted US patent</h3><p>Core microfluidics IP licensed from A*STAR, with our CSO named as inventor.</p><span class="trl">Granted</span></div>
+    </div>
+  </div>
+</section>
+'''
+
+build('oncomimic.html',
+      'OncoMiMIC Platform — Omni Biosystems',
+      'OncoMiMIC recreates the 3D tumor microenvironment on a microfluidic chip, measuring immune cell recruitment, infiltration, and cytolytic kill with AI-driven analysis.',
+      ONCO,
+      cta=('Run your assay on OncoMiMIC.',
+           'We are onboarding pharma and CRO partners for pilot validation studies. Tell us the indication and assay type, and we will come prepared.',
+           'Request a pilot study', '/#contact?topic=Pharma%20%2F%20CRO%20partner'))

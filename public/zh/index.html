@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omni Biosystems — 在芯片上重构药物研发</title>
+<meta name="description" content="Omni Biosystems 设计、制造并自动化微生理系统，是 OncoMiMIC 平台、系统集成及实验迁移咨询的所在。">
+<meta property="og:title" content="Omni Biosystems — 在芯片上重构药物研发">
+<meta property="og:description" content="Omni Biosystems 设计、制造并自动化微生理系统，是 OncoMiMIC 平台、系统集成及实验迁移咨询的所在。">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="/">
+<link rel="alternate" hreflang="zh-Hans" href="/zh/">
+<link rel="alternate" hreflang="x-default" href="/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css?v=fe7c4cbd">
+
+<link rel="icon" href="/favicon.svg?v=ef7169d5" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=a691ec8a" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png?v=b248e0c0" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=bbe86b59">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#071838">
+</head>
+<body class="lang-zh">
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/zh/" aria-label="Omni Biosystems home">
+      <img class="brand-lockup" src="/assets/logo/omni-lockup-dark.svg?v=69320a1a" alt="Omni Biosystems" width="512" height="154">
+    </a>
+    <nav class="nav-wrap" id="navlinks" aria-label="Main">
+      <ul class="nav-links">
+      <li><a class="nav-top active" href="/zh/">首页</a></li>
+      <li class="has-menu">
+        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
+          技术平台
+          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a href="/zh/oncomimic" role="menuitem">OncoMiMIC</a></li>
+          <li><a href="/zh/platforms" role="menuitem">其他平台</a></li>
+        </ul>
+      </li>
+      <li class="has-menu">
+        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
+          系统集成
+          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a href="/zh/integration" role="menuitem">了解更多</a></li>
+        </ul>
+      </li>
+      <li class="has-menu">
+        <button type="button" class="nav-top" aria-expanded="false" aria-haspopup="true">
+          咨询服务
+          <svg class="caret" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a href="/zh/consulting#assay-design" role="menuitem">芯片化体外实验设计</a></li>
+          <li><a href="/zh/consulting#automation" role="menuitem">现有体外实验的自动化</a></li>
+          <li><a href="/zh/consulting#computer-vision" role="menuitem">计算机视觉解决方案</a></li>
+        </ul>
+      </li>
+      <li><a class="nav-top" href="/zh/investors">投资者</a></li>
+      </ul>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="/" class="lang-opt">EN</a>
+        <span class="lang-sep">/</span>
+        <a href="/zh/" class="lang-opt active" aria-current="true">中文</a>
+      </div>
+      <a href="/zh/#contact" class="btn btn-primary nav-cta">联系我们</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero hero-chip" id="top">
+  <div class="hero-grid"></div>
+  <div class="chipstage">
+    <div class="chipglow"></div>
+    <video autoplay muted loop playsinline poster="/assets/video/chip-poster.png" preload="auto" aria-label="旋转的 OncoMiMIC 芯片">
+      <source src="/assets/video/chip-alpha.webm?v=dd8ffc02" type="video/webm">
+      <source src="/assets/video/chip-loop.mp4?v=8650efbe" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow reveal">自动化 · AI 驱动 · 芯片化</span>
+    <h1 class="reveal">药物研发，<br>在一枚 <span class="accent">芯片上重构。</span></h1>
+    <p class="tagline reveal">我们设计、制造并自动化微生理系统——把生物学搬上芯片，把芯片带进实验室。</p>
+    <div class="hero-actions reveal">
+      <a href="#offerings" class="btn btn-primary">了解我们的产品 <span class="arr">→</span></a>
+      <a href="#contact" class="btn btn-ghost">与我们交流</a>
+    </div>
+    <div class="hero-meta reveal">
+      <span><b>已获授权</b> 源自 A*STAR</span>
+      <span><b>美国专利</b> 已授权</span>
+      <span><b>>100 万新元</b> 科研资助</span>
+    </div>
+  </div>
+  <div class="chipcap">OncoMiMIC 芯片 · 注塑成型微流控</div>
+</section>
+
+<div class="proof">
+  <div class="wrap">
+    <span>授权自 <b>A*STAR</b>，新加坡</span>
+    <span>全球 <b>CRO</b> 验证合作</span>
+    <span>同行评审发表于 <b>Bioeng. Transl. Med.</b></span>
+    <span>半导体级 <b>量产能力</b></span>
+  </div>
+</div>
+
+<section class="block problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">行业痛点</span>
+      <h2 class="section-h">临床前药物研发缓慢、昂贵，且过于频繁地得出错误结论。</h2>
+    </div>
+    <div class="stat-row">
+      <div class="stat reveal"><div class="num" data-count="90" data-suffix="%">~0<span class="u">%</span></div><div class="lbl">的候选药物在临床试验中失败</div></div>
+      <div class="stat reveal"><div class="num" data-count="2" data-prefix="~$" data-suffix="B">~$0<span class="u">B</span></div><div class="lbl">将一款药物推向市场的平均成本</div></div>
+      <div class="stat reveal"><div class="num">1–2</div><div class="lbl">标准二维孔板实验得到的终点指标</div></div>
+    </div>
+    <p class="lead reveal" style="margin-top:44px;">平面二维实验与动物模型无法还原三维肿瘤微环境。培养皿中的细胞高估了疗效，而这些误判往往在耗资数亿之后才显现。行业需要更贴近真实、更自动化、且更早到来的数据。</p>
+  </div>
+</section>
+
+<section class="block offer" id="offerings">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">我们的业务</span>
+      <h2 class="section-h">同一套能力栈，三种合作方式。</h2>
+      <p class="lead" style="margin-top:18px;">微流控芯片制造、新型光学、机器人液体处理与 AI 计算机视觉。我们的服务既是对这套能力栈的验证，也是行业向其迁移的路径。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card flag reveal">
+        <span class="badge">旗舰产品</span>
+        <span class="n">01 · 平台</span>
+        <h3>OncoMiMIC 平台</h3>
+        <p>芯片上的离体免疫肿瘤学。重建三维肿瘤微环境，量化免疫细胞的招募、浸润与细胞毒性杀伤——单次实验即可获得五项及以上读出指标。</p>
+        <a class="go" href="/oncomimic">探索 OncoMiMIC →</a>
+      </div>
+      <div class="card reveal">
+        <span class="n">02 · 系统集成</span>
+        <h3>系统集成</h3>
+        <p>我们端到端地自动化芯片平台——成像光学、机器人液体处理与 AI 驱动分析——让您的实验无需人工值守、可通宵运行且结果可重复。</p>
+        <a class="go" href="/integration">自动化您的平台 →</a>
+      </div>
+      <div class="card reveal">
+        <span class="n">03 · 服务</span>
+        <h3>实验迁移与咨询</h3>
+        <p>想把体外实验迁移到芯片，或让现有芯片平台实现自动化？从晶圆到读出，我们已亲手走过全程——也愿与您并肩完成。</p>
+        <a class="go" href="/consulting">开始沟通 →</a>
+      </div>
+    </div>
+
+    <div class="inv-strip reveal">
+      <div>
+        <span class="k">投资者</span>
+        <h3>为什么选择 Omni Biosystems</h3>
+        <p>市场时机、发展进展、知识产权布局，以及从 MVP 芯片到首笔营收的路径——评估这一机会所需的一切，尽在于此。</p>
+      </div>
+      <a href="/investors" class="btn btn-ghost">投资者概览 <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block platform" id="capabilities">
+  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg?v=3640342b" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">我们的能力栈</span>
+      <h2 class="section-h">四大子系统，贯穿我们打造的每一款产品。</h2>
+      <p class="lead" style="margin-top:18px;">我们的每项业务都取自这四种能力的不同组合。当四者共同聚焦于免疫肿瘤学，便诞生了 OncoMiMIC。</p>
+    </div>
+    <div class="subsys">
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+        <h3>微流控芯片制造</h3>
+        <p>采用半导体制造工艺量产的注塑成型、分区化芯片。</p>
+        <span class="trl">TRL 5</span>
+      </div>
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/></svg></div>
+        <h3>新型光学</h3>
+        <p>专为芯片内细胞的实时、纵向捕获而定制的成像光学。</p>
+        <span class="trl">TRL 3</span>
+      </div>
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><rect x="4" y="3" width="16" height="6" rx="2"/><path d="M12 9v6"/><circle cx="12" cy="19" r="2.5"/><path d="M7 15h10"/></svg></div>
+        <h3>机器人液体处理</h3>
+        <p>自动化给药与细胞装载，实现可重复、无需人工干预的实验运行。</p>
+        <span class="trl">TRL 4</span>
+      </div>
+      <div class="sub reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#37D6E6" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <h3>AI 计算机视觉</h3>
+        <p>语义分割、细胞分类与追踪，将读出分析时间缩短 5–20 倍。</p>
+        <span class="trl">TRL 4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block team" id="team">
+  <div class="section-watermark wm-tr"><img src="/assets/logo/omni-logo.svg?v=3640342b" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">创始团队</span>
+      <h2 class="section-h">拥有成功经验的实干者与发明者。</h2>
+    </div>
+    <div class="team-grid">
+      <div class="member reveal">
+        <div class="avatar"><img src="/assets/team/nicholas-oh.png?v=8adf35f1" alt="Nicholas Oh" width="129" height="129"></div>
+        <h3>Nicholas Oh</h3><div class="role">首席执行官</div>
+        <ul><li>Enlitho Pte Ltd 创始人兼 CEO（成立于 2017 年）</li><li>累计募集逾 250 万美元资助与私人投资</li><li>营收同比增长 5 倍；ISO 9001 认证工厂</li><li>将产能扩展至每月 1,000 片晶圆</li><li>新加坡科技设计大学工学学士（优等荣誉）</li></ul>
+      </div>
+      <div class="member reveal">
+        <div class="avatar"><img src="/assets/team/chris-tostado.png?v=5dbbb105" alt="Christopher Tostado 博士" width="129" height="129"></div>
+        <h3>Chris到pher Tostado 博士</h3><div class="role">首席科学官</div>
+        <ul><li>核心美国微流控专利的发明人</li><li>新加坡基因组研究院高级研究科学家 / 项目负责人</li><li>累计获得逾 100 万新元资助</li><li>15 年以上微流控研发经验</li><li>清华大学博士 · 麻省理工学院双学士</li></ul>
+      </div>
+      <div class="member reveal">
+        <div class="avatar"><img src="/assets/team/hui-tang.png?v=e337d64f" alt="Hui Tang" width="129" height="129"></div>
+        <h3>Hui Tang</h3><div class="role">首席财务官 / 业务拓展</div>
+        <ul><li>完成 200 万美元融资（2024 年）</li><li>前 Nufront CEO（曾募集 1.5 亿元人民币）</li><li>拥有成像与移动技术领域 27 项专利</li><li>跨境业务拓展：中国、欧盟、美国</li><li>伊拉斯姆斯大学 / 鹿特丹管理学院高管 MBA</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">联系我们</span>
+        <p class="contact-vision" style="margin-top:18px;">衔接 AI 驱动的发现与临床验证——迈向一个 <span class="accent">超越动物实验的世界。</span></p>
+        <p class="contact-info">投资者、制药与 CRO 合作伙伴、研究人员，以及希望迁移到芯片方案的团队——我们期待您的来信。可直接联系 <a class="mail" href="mailto:contact@omni-biosystems.com">contact@omni-biosystems.com</a>.</p>
+        <div class="contact-meta">Omni Biosystems Pte Ltd<br>新加坡<br>contact@omni-biosystems.com</div>
+      </div>
+      <form class="cf reveal" id="contactForm" novalidate>
+        <div class="frow two">
+          <div><label for="name">姓名</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div><label for="org">机构</label><input id="org" name="org" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="frow"><label for="email">邮箱</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="frow">
+          <label for="topic">我的身份是</label>
+          <select id="topic" name="topic">
+            <option>投资者</option>
+            <option>制药 / CRO 合作伙伴</option>
+            <option>研究人员 / 关键意见领袖</option>
+            <option>咨询与集成</option>
+            <option>媒体</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <div class="frow"><label for="message">留言</label><textarea id="message" name="message" required></textarea></div>
+        <input type="text" name="company_website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn-primary" id="submitBtn">发送留言 <span class="arr">→</span></button>
+        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="/zh/" aria-label="Omni Biosystems home">
+        <img class="brand-lockup foot-lockup" src="/assets/logo/omni-lockup-dark.svg?v=69320a1a" alt="Omni Biosystems" width="512" height="154">
+      </a>
+      <div class="foot-links">
+        <a href="/zh/oncomimic">OncoMiMIC</a>
+        <a href="/zh/platforms">其他平台</a>
+        <a href="/zh/integration">系统集成</a>
+        <a href="/zh/consulting">咨询服务</a>
+        <a href="/zh/investors">投资者专区</a>
+        <a href="/zh/#contact">联系方式</a>
+      </div>
+    </div>
+    <div class="name-note">「区拟」取意亦取音——「区」既指芯片的分区设计，又谐英文「Omni」之首音；「拟」兼含仿真与设计之意，正合我们在芯片上重建微环境、并为客户拟定芯片与实验方案的双重使命。</div>
+    <div class="copy">© <span id="yr"></span> Omni Biosystems Pte Ltd · 新加坡 · OncoMiMIC™ is a platform of Omni Biosystems.</div>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=62bb1d54"></script>
+</body>
+</html>
